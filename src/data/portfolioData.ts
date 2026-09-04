@@ -45,7 +45,7 @@ export const PERSONAL_INFO = {
   tagline:
     'Building reliable backends, managing server infrastructure, and securing web applications.',
   status:
-    'Building Follope | Backend Developer & Web Security @ Robotic Sir AI | DRDO SAG Intern',
+    'Open to Backend Developer & Web Security Opportunities',
   email: 'rajkshitijsss06@gmail.com',
   phone: '+91 9117434145',
   location: 'Meerut / Remote, India',
@@ -83,9 +83,9 @@ export const PERSONAL_INFO = {
 
 export const STARTUP_FOLLOPE = {
   name: 'Follope',
-  tagline: 'Freelancer Invoice & Payment Tracking Platform',
-  role: 'Founder & Lead Developer',
-  status: 'In Development',
+  tagline: 'FinTech Invoice & Real-Time Payment Tracking Engine',
+  role: 'Creator & Lead Backend Engineer',
+  status: 'Production Architecture',
 
   websiteUrl: 'https://follope.com',
 
