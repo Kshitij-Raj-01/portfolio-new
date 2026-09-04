@@ -26,42 +26,43 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
     { name: 'Skills', href: '#skills' },
     { name: 'Crypto Lab', href: '#crypto-lab' },
     { name: 'Security Lab 🛡️', href: '#security-lab' },
+    { name: 'Game 🎮', href: '#cyber-game' },
     { name: 'Notes', href: '#engineering-log' },
     { name: 'Contact', href: '#contact' },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-navbar ${
         isScrolled
-          ? 'bg-[#090d16]/90 backdrop-blur-md border-b border-slate-800/80 shadow-lg shadow-black/20 py-3'
+          ? 'bg-[#060913]/90 backdrop-blur-xl border-b border-cyan-500/15 shadow-xl shadow-black/40 py-3'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand */}
-        <a href="#" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:border-emerald-400/60 transition-colors">
+        <a href="#" className="flex items-center gap-2.5 group">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 transition-all shadow-sm shadow-cyan-500/20">
             <Shield className="w-5 h-5 transition-transform group-hover:scale-110" />
           </div>
           <div className="flex flex-col">
-            <span className="font-mono font-bold text-sm sm:text-base tracking-tight text-white flex items-center gap-1.5">
+            <span className="font-navbar font-bold text-sm sm:text-base tracking-tight text-white flex items-center gap-1.5">
               <span>kshitij.dev</span>
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span className="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
             </span>
-            <span className="text-[10px] text-slate-400 font-mono tracking-wider">
-              BACKEND & SECURITY
+            <span className="text-[10px] text-cyan-400/80 font-mono tracking-wider">
+              BACKEND &bull; SECURITY &bull; SYSTEMS
             </span>
           </div>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-slate-800">
+        <nav className="hidden md:flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-full border border-slate-800 shadow-inner">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:text-emerald-400 hover:bg-slate-800/60 rounded-full transition-all"
+              className="px-3.5 py-1.5 text-xs font-semibold tracking-wide text-slate-300 hover:text-cyan-300 hover:bg-cyan-500/10 rounded-full transition-all"
             >
               {link.name}
             </a>
@@ -72,22 +73,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
         <div className="hidden md:flex items-center gap-2.5">
           <button
             onClick={onOpenTerminal}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-800/90 text-emerald-400 border border-slate-700 hover:border-emerald-500/50 hover:bg-slate-800 transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-navbar font-semibold bg-slate-900/90 text-cyan-400 border border-slate-700/80 hover:border-cyan-500/60 hover:bg-slate-850 transition-all shadow-sm"
             title="Open Interactive Terminal"
           >
-            <Terminal className="w-3.5 h-3.5" />
+            <Terminal className="w-3.5 h-3.5 text-cyan-400" />
             <span>CLI</span>
-            <span className="bg-slate-900 text-[10px] text-slate-400 px-1 py-0.5 rounded border border-slate-700 font-sans">
+            <span className="bg-slate-950 text-[10px] text-slate-400 px-1 py-0.5 rounded border border-slate-800 font-mono">
               ~
             </span>
           </button>
 
           <button
             onClick={onOpenResume}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-800/90 text-cyan-400 border border-slate-700 hover:border-cyan-500/50 hover:bg-slate-800 transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-navbar font-semibold bg-slate-900/90 text-violet-300 border border-slate-700/80 hover:border-violet-500/60 hover:bg-slate-850 transition-all shadow-sm"
             title="View ATS Resume"
           >
-            <FileText className="w-3.5 h-3.5" />
+            <FileText className="w-3.5 h-3.5 text-violet-400" />
             <span>Resume</span>
           </button>
 

@@ -9,22 +9,28 @@ export default {
     extend: {
       colors: {
         dark: {
-          bg: '#090d16',
-          surface: '#0f172a',
-          card: '#131e36',
-          border: '#1e293b',
-          subtle: '#334155'
+          bg: '#060913',
+          surface: '#0b101f',
+          card: '#0e1629',
+          cardHover: '#131e38',
+          border: '#1a243b',
+          subtle: '#2d3a58'
         },
         brand: {
-          emerald: '#10b981',
           cyan: '#06b6d4',
-          blue: '#3b82f6',
-          violet: '#8b5cf6',
-          amber: '#f59e0b'
+          electricCyan: '#00f2fe',
+          violet: '#6366f1',
+          purple: '#a855f7',
+          emerald: '#10b981',
+          neonGreen: '#10f19a',
+          amber: '#f59e0b',
+          rose: '#f43f5e'
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        navbar: ['Space Grotesk', 'Plus Jakarta Sans', 'sans-serif'],
+        display: ['Space Grotesk', 'Plus Jakarta Sans', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace']
       },
       animation: {
