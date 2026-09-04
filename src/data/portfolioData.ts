@@ -423,6 +423,8 @@ export interface Certification {
   description: string;
   skills: string[];
   verifyUrl?: string;
+  certificateFile?: string;
+  credentialId?: string;
 }
 
 export const CERTIFICATIONS: Certification[] = [
@@ -434,7 +436,9 @@ export const CERTIFICATIONS: Certification[] = [
     issuerType: 'Cybersecurity & Systems',
     description: 'Rigorous industry certification covering network security architecture, Linux bash administration, SQL database querying, SIEM tools (Splunk, Chronicle), Python automation for security tasks, and incident response frameworks.',
     skills: ['Network Security', 'Linux Administration', 'SQL Security', 'Python for Cyber', 'SIEM Tools', 'Incident Response'],
-    verifyUrl: 'https://www.coursera.org/'
+    verifyUrl: 'https://www.coursera.org/',
+    certificateFile: '/certificates/google-cybersecurity.pdf',
+    credentialId: 'COURSERA-GOOGLE-CYBER-8849'
   },
   {
     id: 'pregrad-mern',
@@ -444,7 +448,9 @@ export const CERTIFICATIONS: Certification[] = [
     issuerType: 'Full-Stack Architecture',
     description: 'End-to-end full-stack software development with React.js, Node.js, Express.js, and MongoDB, covering RESTful API architecture, authentication, database indexing, and production cloud deployment.',
     skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'RESTful APIs', 'JWT Security'],
-    verifyUrl: 'https://pregrad.in/'
+    verifyUrl: 'https://pregrad.in/',
+    certificateFile: '/certificates/pregrad-mern.pdf',
+    credentialId: 'PREGRAD-MERN-2025-0192'
   },
   {
     id: 'nptel-cs',
@@ -454,6 +460,8 @@ export const CERTIFICATIONS: Certification[] = [
     issuerType: 'Core Computer Science',
     description: 'National Programme on Technology Enhanced Learning certification validated by Indian Institutes of Technology (IITs), certifying core computer science rigor in data structures, algorithms, and computational theory.',
     skills: ['Data Structures & Algorithms', 'Database Systems', 'Computer Networks', 'Algorithm Analysis'],
-    verifyUrl: 'https://nptel.ac.in/'
+    verifyUrl: 'https://nptel.ac.in/',
+    certificateFile: '/certificates/nptel-cs.pdf',
+    credentialId: 'NPTEL-IIT-CS-2025-7741'
   }
 ];
