@@ -38,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
           : 'bg-[#060913]/50 backdrop-blur-md py-4 border-b border-slate-800/40'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand */}
         <Link to="/" className="flex items-center gap-2.5 group">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 transition-all shadow-sm shadow-cyan-500/20">
@@ -77,18 +77,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
 
         {/* Action Controls */}
         <div className="hidden sm:flex items-center gap-2">
-          <button
-            onClick={onOpenTerminal}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-navbar font-semibold bg-slate-900/90 text-cyan-400 border border-slate-700/80 hover:border-cyan-500/60 hover:bg-slate-850 transition-all shadow-sm"
-            title="Open Interactive Terminal"
-          >
-            <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-            <span>CLI</span>
-            <span className="bg-slate-950 text-[10px] text-slate-400 px-1 py-0.5 rounded border border-slate-800 font-mono">
-              ~
-            </span>
-          </button>
-
           <button
             onClick={onOpenResume}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-navbar font-semibold bg-slate-900/90 text-violet-300 border border-slate-700/80 hover:border-violet-500/60 hover:bg-slate-850 transition-all shadow-sm"
