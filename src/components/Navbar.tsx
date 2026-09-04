@@ -21,7 +21,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
 
   const navLinks = [
     { name: 'Follope 🚀', href: '#follope' },
-    { name: 'API Lab', href: '#api-sandbox' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },

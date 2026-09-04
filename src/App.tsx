@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { FollopeSpotlight } from './components/FollopeSpotlight';
-import { ApiSandbox } from './components/ApiSandbox';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { ProjectsGrid } from './components/ProjectsGrid';
 import { SkillsRadar } from './components/SkillsRadar';
@@ -41,7 +40,6 @@ export const App: React.FC = () => {
             onOpenResume={() => setResumeOpen(true)}
           />
           <FollopeSpotlight onOpenWaitlist={() => setWaitlistOpen(true)} />
-          <ApiSandbox />
           <ExperienceTimeline />
           <ProjectsGrid />
           <SkillsRadar />
