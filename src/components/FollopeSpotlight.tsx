@@ -9,7 +9,8 @@ import {
   FileText,
   Server,
   Database,
-  RefreshCw
+  RefreshCw,
+  ExternalLink
 } from 'lucide-react';
 import { STARTUP_FOLLOPE } from '../data/portfolioData';
 import { FollopeCalculator } from './FollopeCalculator';
@@ -39,7 +40,17 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = ({ onOpenWaitli
               Follope <span className="text-emerald-400">—</span> Freelancer Invoicing &amp; Payment Tracking
             </h2>
           </div>
-          <div className="mt-4 md:mt-0">
+          <div className="mt-4 md:mt-0 flex items-center gap-3">
+            <a
+              href="https://follope.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-mono text-xs font-bold hover:bg-emerald-400 transition-all shadow-md shadow-emerald-500/20"
+            >
+              <span>follope.com</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>{STARTUP_FOLLOPE.status}</span>

@@ -77,6 +77,7 @@ export const STARTUP_FOLLOPE = {
   tagline: 'Freelancer Invoice & Payment Tracking Platform',
   role: 'Founder & Lead Architect',
   status: 'Upcoming Public Launch',
+  websiteUrl: 'https://follope.com',
   description:
     'A dedicated FinTech & SaaS platform engineered specifically for independent consultants and freelancers to automate client invoice generation, real-time UPI reconciliation, automated overdue payment follow-ups, and airtight webhook event management.',
   highlights: [
@@ -188,7 +189,8 @@ export const PROJECTS: Project[] = [
     stats: [
       { label: 'Architecture', value: 'Django + Redis' },
       { label: 'Target Market', value: 'Freelancers & SMEs' }
-    ]
+    ],
+    liveUrl: 'https://follope.com'
   },
   {
     id: 'robotic-sir-platform',

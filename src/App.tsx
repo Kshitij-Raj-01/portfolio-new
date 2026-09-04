@@ -8,6 +8,7 @@ import { ProjectsGrid } from './components/ProjectsGrid';
 import { SkillsRadar } from './components/SkillsRadar';
 import { LeetCodeCard } from './components/LeetCodeCard';
 import { CryptoVisualizer } from './components/CryptoVisualizer';
+import { SecurityLab } from './components/SecurityLab';
 import { ResearchSection } from './components/ResearchSection';
 import { EngineeringLog } from './components/EngineeringLog';
 import { ContactSection } from './components/ContactSection';
@@ -48,6 +49,7 @@ export const App: React.FC = () => {
             <LeetCodeCard />
           </div>
           <CryptoVisualizer />
+          <SecurityLab />
           <ResearchSection />
           <EngineeringLog />
           <ContactSection />
