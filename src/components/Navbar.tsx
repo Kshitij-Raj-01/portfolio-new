@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Shield, Menu, X, Github, Linkedin, Code } from 'lucide-react';
+import { Terminal, Shield, Menu, X, Github, Linkedin, Code, FileText } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface NavbarProps {
   onOpenTerminal: () => void;
+  onOpenResume: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -20,10 +21,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
 
   const navLinks = [
     { name: 'Follope 🚀', href: '#follope' },
+    { name: 'API Lab', href: '#api-sandbox' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Research', href: '#research' },
+    { name: 'Crypto Lab', href: '#crypto-lab' },
+    { name: 'Notes', href: '#engineering-log' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -77,6 +80,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
             <span className="bg-slate-900 text-[10px] text-slate-400 px-1 py-0.5 rounded border border-slate-700 font-sans">
               ~
             </span>
+          </button>
+
+          <button
+            onClick={onOpenResume}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-800/90 text-cyan-400 border border-slate-700 hover:border-cyan-500/50 hover:bg-slate-800 transition-all shadow-sm"
+            title="View ATS Resume"
+          >
+            <FileText className="w-3.5 h-3.5" />
+            <span>Resume</span>
           </button>
 
           <a

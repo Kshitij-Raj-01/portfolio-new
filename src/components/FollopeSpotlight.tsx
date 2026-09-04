@@ -12,8 +12,13 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { STARTUP_FOLLOPE } from '../data/portfolioData';
+import { FollopeCalculator } from './FollopeCalculator';
 
-export const FollopeSpotlight: React.FC = () => {
+interface FollopeSpotlightProps {
+  onOpenWaitlist: () => void;
+}
+
+export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = ({ onOpenWaitlist }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'architecture' | 'features'>('overview');
 
   return (
@@ -265,6 +270,9 @@ export const FollopeSpotlight: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Interactive Freelancer ROI & Late Payment Loss Calculator */}
+        <FollopeCalculator onOpenWaitlist={onOpenWaitlist} />
       </div>
     </section>
   );

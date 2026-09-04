@@ -1,12 +1,13 @@
 import React from 'react';
-import { ArrowRight, Terminal, Server, Lock, Cpu, Database } from 'lucide-react';
+import { ArrowRight, Terminal, Server, Lock, Cpu, Database, FileText } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface HeroProps {
   onOpenTerminal: () => void;
+  onOpenResume: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
       {/* Background ambient lighting */}
@@ -59,6 +60,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
             >
               <Terminal className="w-4 h-4" />
               <span>Launch Terminal</span>
+            </button>
+
+            <button
+              onClick={onOpenResume}
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-900/90 text-cyan-400 border border-slate-700/80 font-mono text-xs hover:border-cyan-500/40 hover:bg-slate-850 transition-all"
+            >
+              <FileText className="w-4 h-4" />
+              <span>ATS Resume</span>
             </button>
           </div>
 
