@@ -29,13 +29,13 @@ export const SkillsRadar: React.FC = () => {
         <div className="max-w-2xl mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-3">
             <Cpu className="w-3.5 h-3.5" />
-            <span>TECHNICAL CAPABILITIES</span>
+            <span>SKILLS &amp; TOOLS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Systems, Security &amp; Engineering Stack
+            Skills &amp; Technologies
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base">
-            Proficiencies across modern distributed backends, post-quantum crypto research, and cloud infrastructure.
+            Languages, backend frameworks, databases, security tools, and developer platforms I work with.
           </p>
         </div>
 

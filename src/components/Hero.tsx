@@ -27,15 +27,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
-            Architecting <span className="gradient-text-emerald">Resilient</span> Backends &amp;{' '}
-            <span className="gradient-text-cyan">Hardened</span> Cloud Systems.
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.15] font-display">
+            Backend Developer &amp;{' '}
+            <span className="gradient-text-cyan">Web Security Engineer</span>.
           </h1>
 
           {/* Subtitle */}
           <p className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Hi, I'm <strong className="text-white font-semibold">Kshitij Raj</strong>. I design high-throughput APIs, manage production servers, and research Post-Quantum Cryptography. Founder of{' '}
-            <a href="#follope" className="text-emerald-400 hover:underline font-medium">Follope</a>.
+            Hi, I'm <strong className="text-white font-semibold">Kshitij Raj</strong>. Founder of{' '}
+            <a href="#follope" className="text-emerald-400 hover:underline font-medium">Follope</a>, backend &amp; server security engineer at <strong className="text-white font-semibold">Robotic Sir AI</strong>, and student intern researching Post-Quantum Cryptography at <strong className="text-white font-semibold">DRDO SAG</strong>.
           </p>
 
           {/* CTAs */}
@@ -92,19 +92,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
         <div className="mt-16 pt-8 border-t border-slate-800/60 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-slate-400">
           <div className="flex items-center gap-2">
             <Server className="w-4 h-4 text-emerald-400" />
-            <span>Django / Node.js Microservices</span>
+            <span>Django &bull; Node.js &bull; Express</span>
           </div>
           <div className="flex items-center gap-2">
             <Lock className="w-4 h-4 text-cyan-400" />
-            <span>Post-Quantum Lattice Crypto (DRDO SAG)</span>
+            <span>Post-Quantum Cryptography (DRDO SAG)</span>
           </div>
           <div className="flex items-center gap-2">
             <Database className="w-4 h-4 text-blue-400" />
-            <span>PostgreSQL &amp; Redis Caching</span>
+            <span>PostgreSQL &bull; Redis &bull; MongoDB</span>
           </div>
           <div className="flex items-center gap-2">
             <Cpu className="w-4 h-4 text-amber-400" />
-            <span>Embedded Firmware &amp; Linux VPS</span>
+            <span>Linux VPS &bull; Server Hardening &bull; Docker</span>
           </div>
         </div>
       </div>

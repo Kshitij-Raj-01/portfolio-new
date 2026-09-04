@@ -9,13 +9,13 @@ export const NotesPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-3">
           <BookOpen className="w-3.5 h-3.5" />
-          <span>TECHNICAL WRITE-UPS &bull; ARCHITECTURAL LOGS</span>
+          <span>TECHNICAL NOTES &bull; WRITE-UPS</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
-          Engineering Notes &amp; Systems Logs
+          Engineering Notes
         </h1>
         <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Deep-dive technical notes, code snippets, post-mortems, and algorithmic analyses from building production backends, adapting cryptographic algorithms to resource-constrained hardware, and distributed queue engineering.
+          Technical notes, code examples, and write-ups on backend architecture, microcontroller memory optimization, and cryptographic algorithms.
         </p>
 
         {/* Quick Highlights Bar */}

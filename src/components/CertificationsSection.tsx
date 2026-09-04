@@ -19,13 +19,13 @@ export const CertificationsSection: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-3">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>ACCREDITATIONS &bull; INDUSTRY &amp; ACADEMIC</span>
+              <span>ACCREDITATIONS &bull; CERTIFICATES</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">
-              Verified Certifications &amp; Accreditations
+              Certifications &amp; Accreditations
             </h2>
             <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl">
-              Professional credentials validating cybersecurity defense, full-stack MERN architecture, and premier IIT/NPTEL computer science foundations.
+              Verified certifications from Google (Coursera), Pregrad, and NPTEL in cybersecurity, MERN stack development, and computer science fundamentals.
             </p>
           </div>
 

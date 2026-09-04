@@ -37,32 +37,32 @@ export const ProjectsPage: React.FC = () => {
       <div className="mb-10 text-center sm:text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-3">
           <FolderGit2 className="w-3.5 h-3.5" />
-          <span>PORTFOLIO &bull; ENGINEERING DIRECTORY</span>
+          <span>PORTFOLIO &bull; PROJECTS</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
-          Systems &amp; Software Projects
+          Projects &amp; Applications
         </h1>
         <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Production backends, FinTech platforms, enterprise ERPs, and distributed cloud applications built with Django, Node.js, PostgreSQL, Redis, and Celery.
+          Web applications, SaaS tools, and backend services built with Django, Node.js, Express, PostgreSQL, MongoDB, and Redis.
         </p>
 
         {/* High-level directory statistics HUD */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-slate-800/80">
           <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">Total Systems</div>
-            <div className="text-xl sm:text-2xl font-black text-cyan-400 font-display mt-0.5">{PROJECTS.length} Projects</div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">Total Projects</div>
+            <div className="text-xl sm:text-2xl font-black text-cyan-400 font-display mt-0.5">{PROJECTS.length} Built</div>
           </div>
           <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">Primary Core</div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">Core Stack</div>
             <div className="text-xl sm:text-2xl font-black text-emerald-400 font-display mt-0.5">Django &bull; Node.js</div>
           </div>
           <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">Data Stores</div>
-            <div className="text-xl sm:text-2xl font-black text-violet-400 font-display mt-0.5">Postgres &bull; Redis</div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">Databases</div>
+            <div className="text-xl sm:text-2xl font-black text-violet-400 font-display mt-0.5">Postgres &bull; Mongo</div>
           </div>
           <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">Production Reliability</div>
-            <div className="text-xl sm:text-2xl font-black text-amber-400 font-display mt-0.5">100% Launch</div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">Focus</div>
+            <div className="text-xl sm:text-2xl font-black text-amber-400 font-display mt-0.5">Backend &amp; Security</div>
           </div>
         </div>
       </div>

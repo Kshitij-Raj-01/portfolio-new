@@ -11,13 +11,13 @@ export const LabsPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-3">
           <Cpu className="w-3.5 h-3.5" />
-          <span>INTERACTIVE DEFENSE &bull; CRYPTOGRAPHIC SIMULATIONS</span>
+          <span>INTERACTIVE LABS &bull; SIMULATIONS</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
-          Security Sandbox &amp; Crypto Labs
+          Security Labs &amp; Crypto Demos
         </h1>
         <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Interactive simulation environments demonstrating post-quantum mathematical resistance, ancient Vedic multiplication cycle reduction, defensive application security sandboxes, and an arcade firewall defender game.
+          Interactive demonstrations of post-quantum cryptography, Vedic mathematics multiplication, defensive web security practices, and a firewall arcade game.
         </p>
       </div>
 

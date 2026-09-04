@@ -10,13 +10,13 @@ export const ContactPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-3">
           <Mail className="w-3.5 h-3.5" />
-          <span>DIRECT DISPATCH &bull; COLLABORATION &bull; HIRING</span>
+          <span>CONTACT</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
-          Get in Touch &amp; Hire
+          Get in Touch
         </h1>
         <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Available for backend engineering opportunities, server security &amp; hardening audits, FinTech architecture consultation via Follope, and Post-Quantum cryptographic research collaborations.
+          Open to backend engineering roles, server management projects, and technical discussions.
         </p>
 
         {/* Contact Status HUD */}

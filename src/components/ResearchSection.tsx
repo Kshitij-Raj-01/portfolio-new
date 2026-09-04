@@ -13,10 +13,10 @@ export const ResearchSection: React.FC = () => {
             <span>RESEARCH &amp; HONORS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Academic Research &amp; Hackathon Awards
+            Research &amp; Achievements
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base">
-            Exploring algorithmic breakthroughs at the intersection of classical mathematical formulations and quantum-resilient security.
+            Research paper presentations, hackathon awards, and technical mentorship.
           </p>
         </div>
 

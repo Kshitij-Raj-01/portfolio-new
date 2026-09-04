@@ -10,13 +10,13 @@ export const ExperienceTimeline: React.FC = () => {
         <div className="max-w-2xl mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-3">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>TRACK RECORD</span>
+            <span>EXPERIENCE</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Work Experience &amp; Research Roles
+            Work Experience
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base">
-            From defence-grade cryptographic research at DRDO to production cloud infrastructure &amp; backend engineering.
+            Roles spanning backend development and server management at Robotic Sir AI, Post-Quantum Cryptography research at DRDO SAG, and full-stack development.
           </p>
         </div>
 

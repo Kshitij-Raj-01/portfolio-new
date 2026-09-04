@@ -43,7 +43,7 @@ export const PERSONAL_INFO = {
   name: 'Kshitij Raj',
   title: 'Backend Developer & Web Security Engineer',
   tagline:
-    'Building resilient backend systems, secure APIs, and scalable cloud infrastructure.',
+    'Building reliable backends, managing server infrastructure, and securing web applications.',
   status:
     'Building Follope | Backend Developer & Web Security @ Robotic Sir AI | DRDO SAG Intern',
   email: 'rajkshitijsss06@gmail.com',
@@ -74,10 +74,10 @@ export const PERSONAL_INFO = {
   },
 
   stats: [
-    { label: 'Production APIs', value: '10+' },
-    { label: 'Student Records', value: '1,000+' },
-    { label: 'Production Deployments', value: 'Multiple' },
-    { label: 'SRAM Target', value: '< 1 MB' }
+    { label: 'LeetCode Solved', value: '107' },
+    { label: 'Featured Projects', value: '5+' },
+    { label: 'Verified Certs', value: '3' },
+    { label: 'Research Intern', value: 'DRDO SAG' }
   ]
 };
 

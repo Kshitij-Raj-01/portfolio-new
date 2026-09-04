@@ -10,13 +10,13 @@ export const CertificationsPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-3">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>VERIFIED ACCREDITATIONS &bull; PDF CERTIFICATES</span>
+          <span>ACCREDITATIONS &bull; CERTIFICATES</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
-          Verified Credentials &amp; Certifications
+          Certifications &amp; Accreditations
         </h1>
         <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Industry accreditations and academic certifications validating hands-on cybersecurity defense, Linux VPS administration, full-stack MERN production systems, and IIT computer science foundations.
+          Verified certificates from Google (via Coursera), Pregrad, and NPTEL in cybersecurity, full-stack MERN development, and computer science fundamentals.
         </p>
 
         {/* Verification Metadata Bar */}

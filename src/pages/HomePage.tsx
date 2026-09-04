@@ -34,13 +34,13 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-3">
               <FolderGit2 className="w-3.5 h-3.5" />
-              <span>FEATURED PRODUCTION ARCHITECTURES</span>
+              <span>FEATURED WORK</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
-              Engineered Systems &amp; Deployments
+              Selected Projects &amp; Applications
             </h2>
             <p className="mt-2 text-slate-400 text-sm max-w-xl">
-              A curated selection of production backends, SaaS infrastructure, and embedded prototypes.
+              Production backends, SaaS tools, and web applications I've engineered and deployed.
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             to="/projects"
             className="mt-4 md:mt-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 hover:text-white font-mono text-xs font-semibold transition-all group"
           >
-            <span>Explore All Projects ({PROJECTS.length})</span>
+            <span>View All Projects ({PROJECTS.length})</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
@@ -118,13 +118,13 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-3">
                 <ShieldCheck className="w-3.5 h-3.5" />
-                <span>ACCREDITED INDUSTRY CREDENTIALS</span>
+                <span>VERIFIED CERTIFICATIONS</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display mb-2">
-                Verified Certifications &amp; PDF Viewer
+                Certifications &amp; Accreditations
               </h2>
               <p className="text-slate-300 text-sm max-w-xl leading-relaxed">
-                Explore verified credentials in Google Cybersecurity, Pregrad MERN Stack Architecture, and NPTEL IIT computer science foundations with embedded interactive PDF previews.
+                Verified certifications in Google Cybersecurity, Pregrad MERN Stack, and NPTEL IIT Computer Science with interactive PDF document previews.
               </p>
               
               <div className="flex flex-wrap gap-2 mt-4">
