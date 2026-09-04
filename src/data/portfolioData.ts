@@ -413,3 +413,47 @@ export const RESEARCH_AND_HONORS = [
     tags: ['Mentorship', 'MERN Stack', 'Public Speaking', 'Code Review']
   }
 ];
+
+export interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  badge: string;
+  issuerType: string;
+  description: string;
+  skills: string[];
+  verifyUrl?: string;
+}
+
+export const CERTIFICATIONS: Certification[] = [
+  {
+    id: 'google-cybersecurity',
+    title: 'Google Cybersecurity Professional Certificate',
+    issuer: 'Google (via Coursera)',
+    badge: 'Professional Credential',
+    issuerType: 'Cybersecurity & Systems',
+    description: 'Rigorous industry certification covering network security architecture, Linux bash administration, SQL database querying, SIEM tools (Splunk, Chronicle), Python automation for security tasks, and incident response frameworks.',
+    skills: ['Network Security', 'Linux Administration', 'SQL Security', 'Python for Cyber', 'SIEM Tools', 'Incident Response'],
+    verifyUrl: 'https://www.coursera.org/'
+  },
+  {
+    id: 'pregrad-mern',
+    title: 'MERN Stack Engineering Certification',
+    issuer: 'Pregrad',
+    badge: 'Course Completion',
+    issuerType: 'Full-Stack Architecture',
+    description: 'End-to-end full-stack software development with React.js, Node.js, Express.js, and MongoDB, covering RESTful API architecture, authentication, database indexing, and production cloud deployment.',
+    skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'RESTful APIs', 'JWT Security'],
+    verifyUrl: 'https://pregrad.in/'
+  },
+  {
+    id: 'nptel-cs',
+    title: 'NPTEL Computer Science Certification',
+    issuer: 'NPTEL / IIT (Ministry of Education, Govt. of India)',
+    badge: 'Government / IIT Accredited',
+    issuerType: 'Core Computer Science',
+    description: 'National Programme on Technology Enhanced Learning certification validated by Indian Institutes of Technology (IITs), certifying core computer science rigor in data structures, algorithms, and computational theory.',
+    skills: ['Data Structures & Algorithms', 'Database Systems', 'Computer Networks', 'Algorithm Analysis'],
+    verifyUrl: 'https://nptel.ac.in/'
+  }
+];

@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, Printer } from 'lucide-react';
-import { PERSONAL_INFO, EXPERIENCES, PROJECTS, RESEARCH_AND_HONORS } from '../data/portfolioData';
+import { PERSONAL_INFO, EXPERIENCES, PROJECTS, RESEARCH_AND_HONORS, CERTIFICATIONS } from '../data/portfolioData';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -151,6 +151,21 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 <div key={r.id}>
                   <strong className="text-white print:text-black">{r.title}</strong> — <span className="text-slate-400">{r.institution} ({r.year})</span>
                   <div className="text-[11px] text-slate-400 pl-2 mt-0.5">{r.description}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Certifications & Accreditations */}
+          <div>
+            <h2 className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider mb-2 border-b border-slate-800 pb-1 print:text-black">
+              Certifications &amp; Accreditations
+            </h2>
+            <div className="space-y-2 text-xs text-slate-300">
+              {CERTIFICATIONS.map((c) => (
+                <div key={c.id}>
+                  <strong className="text-white print:text-black">{c.title}</strong> — <span className="text-slate-400">{c.issuer}</span>
+                  <div className="text-[11px] text-slate-400 pl-2 mt-0.5">• {c.description}</div>
                 </div>
               ))}
             </div>

@@ -27,6 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
     { name: 'Crypto Lab', href: '#crypto-lab' },
     { name: 'Security Lab 🛡️', href: '#security-lab' },
     { name: 'Game 🎮', href: '#cyber-game' },
+    { name: 'Certs 📜', href: '#certifications' },
     { name: 'Notes', href: '#engineering-log' },
     { name: 'Contact', href: '#contact' },
   ];

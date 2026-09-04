@@ -11,6 +11,7 @@ import { CryptoVisualizer } from './components/CryptoVisualizer';
 import { SecurityLab } from './components/SecurityLab';
 import { CyberMiniGame } from './components/CyberMiniGame';
 import { ResearchSection } from './components/ResearchSection';
+import { CertificationsSection } from './components/CertificationsSection';
 import { EngineeringLog } from './components/EngineeringLog';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -57,6 +58,7 @@ export const App: React.FC = () => {
           <SecurityLab />
           <CyberMiniGame />
           <ResearchSection />
+          <CertificationsSection />
           <EngineeringLog />
           <ContactSection />
         </main>

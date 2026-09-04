@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2, CornerDownLeft, Sparkles } from 'lucide-react';
-import { PERSONAL_INFO, STARTUP_FOLLOPE, EXPERIENCES, PROJECTS } from '../data/portfolioData';
+import { PERSONAL_INFO, STARTUP_FOLLOPE, EXPERIENCES, PROJECTS, CERTIFICATIONS } from '../data/portfolioData';
 
 interface InteractiveTerminalProps {
   isOpen: boolean;
@@ -58,6 +58,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             <div><span className="text-cyan-400 w-28 inline-block">experience</span> - Full work and internship history</div>
             <div><span className="text-cyan-400 w-28 inline-block">projects</span> - View production software projects</div>
             <div><span className="text-cyan-400 w-28 inline-block">skills</span> - Full systems &amp; backend stack</div>
+            <div><span className="text-cyan-400 w-28 inline-block">certs</span> - Verified credentials &amp; certifications</div>
             <div><span className="text-cyan-400 w-28 inline-block">contact</span> - Email, phone, and links</div>
             <div><span className="text-cyan-400 w-28 inline-block">sudo hire</span> - Direct recruiter fast-track</div>
             <div><span className="text-cyan-400 w-28 inline-block">clear</span> - Clear screen</div>
@@ -137,6 +138,22 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             <div><span className="text-cyan-400 font-bold">Security:</span> Post-Quantum Cryptography, Lattice algorithms, Linux hardening</div>
             <div><span className="text-cyan-400 font-bold">Languages:</span> Python, TypeScript, JavaScript, C, C++, PHP, SQL</div>
             <div><span className="text-cyan-400 font-bold">DevOps:</span> Docker, CI/CD, AWS S3, Hostinger VPS, Linux</div>
+          </div>
+        );
+        break;
+
+      case 'certs':
+      case 'certifications':
+        response = (
+          <div className="space-y-2 text-xs text-slate-300">
+            <div className="text-emerald-400 font-bold mb-1">Verified Certifications &amp; Accreditations:</div>
+            {CERTIFICATIONS.map((c) => (
+              <div key={c.id} className="border-l-2 border-cyan-500 pl-2">
+                <div className="font-bold text-white">{c.title}</div>
+                <div className="text-cyan-400 text-[11px]">{c.issuer} • {c.badge}</div>
+                <div className="text-slate-400 text-[10px] mt-0.5">{c.skills.join(', ')}</div>
+              </div>
+            ))}
           </div>
         );
         break;
