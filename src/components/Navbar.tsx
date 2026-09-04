@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { Terminal, Shield, Menu, X, Github, Linkedin, Code, FileText } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
@@ -20,29 +21,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
   }, []);
 
   const navLinks = [
-    { name: 'Follope 🚀', href: '#follope' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Crypto Lab', href: '#crypto-lab' },
-    { name: 'Security Lab 🛡️', href: '#security-lab' },
-    { name: 'Game 🎮', href: '#cyber-game' },
-    { name: 'Certs 📜', href: '#certifications' },
-    { name: 'Notes', href: '#engineering-log' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Overview', path: '/' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Experience', path: '/experience' },
+    { name: 'Certs 📜', path: '/certifications' },
+    { name: 'Labs & Game 🛡️', path: '/labs' },
+    { name: 'Notes ✍️', path: '/notes' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-navbar ${
         isScrolled
-          ? 'bg-[#060913]/90 backdrop-blur-xl border-b border-cyan-500/15 shadow-xl shadow-black/40 py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-[#060913]/90 backdrop-blur-xl border-b border-cyan-500/15 shadow-xl shadow-black/40 py-2.5'
+          : 'bg-[#060913]/50 backdrop-blur-md py-4 border-b border-slate-800/40'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand */}
-        <a href="#" className="flex items-center gap-2.5 group">
+        <Link to="/" className="flex items-center gap-2.5 group">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 transition-all shadow-sm shadow-cyan-500/20">
             <Shield className="w-5 h-5 transition-transform group-hover:scale-110" />
           </div>
@@ -55,26 +53,33 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
               BACKEND &bull; SECURITY &bull; SYSTEMS
             </span>
           </div>
-        </a>
+        </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-full border border-slate-800 shadow-inner">
+        {/* Desktop Multi-Page Navigation */}
+        <nav className="hidden lg:flex items-center gap-1 bg-slate-900/80 p-1 rounded-full border border-slate-800 shadow-inner">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="px-3.5 py-1.5 text-xs font-semibold tracking-wide text-slate-300 hover:text-cyan-300 hover:bg-cyan-500/10 rounded-full transition-all"
+            <NavLink
+              key={link.path}
+              to={link.path}
+              end={link.path === '/'}
+              className={({ isActive }) =>
+                `px-3.5 py-1.5 text-xs font-semibold tracking-wide rounded-full transition-all ${
+                  isActive
+                    ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/40 shadow-sm shadow-cyan-500/20'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/80'
+                }`
+              }
             >
               {link.name}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
         {/* Action Controls */}
-        <div className="hidden md:flex items-center gap-2.5">
+        <div className="hidden sm:flex items-center gap-2">
           <button
             onClick={onOpenTerminal}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-navbar font-semibold bg-slate-900/90 text-cyan-400 border border-slate-700/80 hover:border-cyan-500/60 hover:bg-slate-850 transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-navbar font-semibold bg-slate-900/90 text-cyan-400 border border-slate-700/80 hover:border-cyan-500/60 hover:bg-slate-850 transition-all shadow-sm"
             title="Open Interactive Terminal"
           >
             <Terminal className="w-3.5 h-3.5 text-cyan-400" />
@@ -86,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
 
           <button
             onClick={onOpenResume}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-navbar font-semibold bg-slate-900/90 text-violet-300 border border-slate-700/80 hover:border-violet-500/60 hover:bg-slate-850 transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-navbar font-semibold bg-slate-900/90 text-violet-300 border border-slate-700/80 hover:border-violet-500/60 hover:bg-slate-850 transition-all shadow-sm"
             title="View ATS Resume"
           >
             <FileText className="w-3.5 h-3.5 text-violet-400" />
@@ -97,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
             href={PERSONAL_INFO.socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 border border-transparent hover:border-slate-700 transition-colors"
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-850 border border-transparent hover:border-slate-800 transition-colors"
             title="GitHub Profile"
           >
             <Github className="w-4 h-4" />
@@ -107,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
             href={PERSONAL_INFO.socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-lg text-slate-400 hover:text-blue-400 hover:bg-slate-800 border border-transparent hover:border-slate-700 transition-colors"
+            className="p-2 rounded-xl text-slate-400 hover:text-blue-400 hover:bg-slate-850 border border-transparent hover:border-slate-800 transition-colors"
             title="LinkedIn Profile"
           >
             <Linkedin className="w-4 h-4" />
@@ -117,32 +122,33 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
             href={PERSONAL_INFO.socialLinks.leetcode}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-lg text-slate-400 hover:text-amber-400 hover:bg-slate-800 border border-transparent hover:border-slate-700 transition-colors"
+            className="p-2 rounded-xl text-slate-400 hover:text-amber-400 hover:bg-slate-850 border border-transparent hover:border-slate-800 transition-colors"
             title="LeetCode Profile"
           >
             <Code className="w-4 h-4" />
           </a>
 
-          <a
-            href="#contact"
-            className="ml-1 px-4 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-colors shadow-sm shadow-emerald-500/20"
+          <Link
+            to="/contact"
+            className="ml-1 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 hover:bg-cyan-400 transition-colors shadow-sm shadow-cyan-500/20"
           >
             Let's Talk
-          </a>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={onOpenTerminal}
-            className="p-2 rounded-lg bg-slate-800 text-emerald-400 border border-slate-700 text-xs"
+            className="p-2 rounded-xl bg-slate-850 text-cyan-400 border border-slate-750 text-xs"
             title="Terminal"
           >
             <Terminal className="w-4 h-4" />
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-slate-400 hover:text-white bg-slate-900 border border-slate-800"
+            className="p-2 rounded-xl text-slate-300 hover:text-white bg-slate-900 border border-slate-800"
+            aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -151,51 +157,62 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
 
       {/* Mobile menu dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0c1220] border-b border-slate-800 px-4 py-4 space-y-2">
+        <div className="lg:hidden bg-[#0a0f1d] border-b border-slate-800 px-4 py-4 space-y-1.5 shadow-2xl animate-fadeIn">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
+            <NavLink
+              key={link.path}
+              to={link.path}
+              end={link.path === '/'}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-medium text-slate-200 hover:text-emerald-400 hover:bg-slate-850 rounded-lg"
+              className={({ isActive }) =>
+                `block px-3.5 py-2 text-sm font-medium rounded-xl transition-all ${
+                  isActive
+                    ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-850'
+                }`
+              }
             >
               {link.name}
-            </a>
+            </NavLink>
           ))}
-          <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
-            <div className="flex items-center gap-3">
+
+          <div className="pt-3 mt-2 border-t border-slate-800 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenResume();
+                }}
+                className="px-3 py-1.5 rounded-lg bg-slate-800 text-violet-300 text-xs font-mono flex items-center gap-1.5"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Resume</span>
+              </button>
               <a
                 href={PERSONAL_INFO.socialLinks.github}
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 hover:text-white"
+                className="p-2 rounded-lg bg-slate-850 text-slate-400 hover:text-white"
               >
-                <Github className="w-5 h-5" />
+                <Github className="w-4 h-4" />
               </a>
               <a
                 href={PERSONAL_INFO.socialLinks.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 hover:text-blue-400"
+                className="p-2 rounded-lg bg-slate-850 text-slate-400 hover:text-blue-400"
               >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href={PERSONAL_INFO.socialLinks.leetcode}
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-400 hover:text-amber-400"
-              >
-                <Code className="w-5 h-5" />
+                <Linkedin className="w-4 h-4" />
               </a>
             </div>
-            <a
-              href="#contact"
+
+            <Link
+              to="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-1.5 text-xs font-semibold bg-emerald-500 text-slate-950 rounded-md"
+              className="px-3.5 py-1.5 text-xs font-bold bg-cyan-500 text-slate-950 rounded-xl"
             >
-              Contact Me
-            </a>
+              Let's Talk
+            </Link>
           </div>
         </div>
       )}

@@ -32,31 +32,39 @@ export interface SkillCategory {
   title: string;
   icon: string;
   description: string;
-  skills: { name: string; level: string; highlight?: boolean }[];
+  skills: {
+    name: string;
+    level: string;
+    highlight?: boolean;
+  }[];
 }
 
 export const PERSONAL_INFO = {
   name: 'Kshitij Raj',
   title: 'Backend Developer & Web Security Engineer',
-  tagline: 'Architecting resilient backend systems, secure APIs & scalable cloud infrastructure.',
-  status: 'Building Follope | Backend & Web Security @ Robotic Sir AI | DRDO SAG Intern',
+  tagline:
+    'Building resilient backend systems, secure APIs, and scalable cloud infrastructure.',
+  status:
+    'Building Follope | Backend Developer & Web Security @ Robotic Sir AI | DRDO SAG Intern',
   email: 'rajkshitijsss06@gmail.com',
   phone: '+91 9117434145',
   location: 'Meerut / Remote, India',
+
   education: {
     institution: 'Shobhit Institute of Engineering & Technology',
     degree: 'Bachelor of Technology in Computer Science and Engineering',
-    period: 'Aug 2023 – June 2027',
+    period: 'Aug 2023 – Jun 2027',
     location: 'Meerut, Uttar Pradesh',
     coursework: [
       'Data Structures & Algorithms',
       'Cryptography & Network Security',
       'Database Management Systems',
       'Computer Networks',
-      'Software Methodology',
+      'Software Engineering',
       'Computer Architecture'
     ]
   },
+
   socialLinks: {
     github: 'https://github.com/Kshitij-Raj-01/',
     linkedin: 'https://www.linkedin.com/in/kshitij-raj-287106292',
@@ -64,51 +72,62 @@ export const PERSONAL_INFO = {
     hackerrank: 'https://hackerrank.com/profile/kshwebsites',
     oldPortfolio: 'https://kshitij-raj.vercel.app/'
   },
+
   stats: [
     { label: 'Production APIs', value: '10+' },
-    { label: 'Student Records Managed', value: '1,000+' },
-    { label: 'Launch Traffic Handled', value: '100%' },
-    { label: 'SRAM Hardware Target', value: '< 1 MB' }
+    { label: 'Student Records', value: '1,000+' },
+    { label: 'Production Deployments', value: 'Multiple' },
+    { label: 'SRAM Target', value: '< 1 MB' }
   ]
 };
 
 export const STARTUP_FOLLOPE = {
   name: 'Follope',
   tagline: 'Freelancer Invoice & Payment Tracking Platform',
-  role: 'Founder & Lead Architect',
-  status: 'Upcoming Public Launch',
+  role: 'Founder & Lead Developer',
+  status: 'In Development',
+
   websiteUrl: 'https://follope.com',
+
   description:
-    'A dedicated FinTech & SaaS platform engineered specifically for independent consultants and freelancers to automate client invoice generation, real-time UPI reconciliation, automated overdue payment follow-ups, and airtight webhook event management.',
+    'A FinTech SaaS platform designed for freelancers and independent professionals to simplify invoice generation, payment tracking, and automated client follow-ups.',
+
   highlights: [
-    'Automated Invoice Generation with customizable tax, discounts, and itemized billing',
-    'Real-time UPI payment tracking workflows with instant status reconciliation',
-    'Intelligent multi-channel client payment reminders and automated follow-ups',
-    'Resilient asynchronous processing powered by Redis message broker and Celery task workers',
-    'Hardened secret management, webhook signature verification, and automated CI/CD deployment pipelines'
+    'Professional invoice generation with customizable tax, discounts, and itemized billing',
+    'UPI payment workflows with payment-status tracking and webhook-based reconciliation',
+    'Automated client payment reminders and overdue follow-up workflows',
+    'Asynchronous background processing using Celery and Redis',
+    'Secure webhook handling with signature verification and protected application secrets',
+    'Containerized deployment and automated CI/CD workflows'
   ],
+
   techStack: [
     'Django REST Framework',
     'PostgreSQL',
     'Redis',
     'Celery',
-    'UPI Payment Gateways',
+    'UPI Payment Integration',
     'Docker',
-    'Webhooks & Automation',
-    'CI/CD & Cloud Monitoring'
+    'Webhooks',
+    'CI/CD',
+    'Cloud Infrastructure'
   ],
+
   architectureHighlights: [
     {
-      title: 'Core Engine',
-      desc: 'Django with clean modular architecture, normalized relational schemas, and query optimization.'
+      title: 'Core Backend',
+      desc:
+        'Django REST Framework with modular application structure, relational data modeling, authentication, and API-layer validation.'
     },
     {
-      title: 'Async Tasks',
-      desc: 'Celery + Redis workers executing periodic invoice reconciliations and email/SMS reminder schedules.'
+      title: 'Async Processing',
+      desc:
+        'Celery workers with Redis for background jobs, scheduled payment checks, notifications, and automated follow-up workflows.'
     },
     {
       title: 'Security Layer',
-      desc: 'HMAC signature verification on inbound webhooks, encrypted secret vaults, and rate-limited endpoints.'
+      desc:
+        'Webhook signature verification, protected environment secrets, authentication controls, rate limiting, and secure API design.'
     }
   ]
 };
@@ -116,185 +135,423 @@ export const STARTUP_FOLLOPE = {
 export const EXPERIENCES: Experience[] = [
   {
     id: 'robotic-sir',
+
     role: 'Backend Developer, Server Management & Web Security',
+
     company: 'Robotic Sir AI India Pvt. Ltd.',
+
     companySubtitle: 'Robotics & AI Technology Platform',
-    period: 'Present',
+
+    period: 'June 2026 - Present',
+
     location: 'India',
+
     current: true,
+
     type: 'Full-time',
+
     highlights: [
-      'Architecting resilient RESTful backend APIs and microservices powering robotics community and educational workflows.',
-      'Leading server management, Linux VPS hardening, access control policies, and end-to-end web security audits.',
-      'Implementing automated CI/CD deployment pipelines, system health monitoring, and automated database backups.',
-      'Optimizing database queries and caching layers to ensure low-latency response times under high concurrency.'
+      'Developing and maintaining RESTful backend APIs supporting robotics education, community, member, and event workflows.',
+      'Managing Linux-based VPS infrastructure, access controls, server configuration, and web security hardening.',
+      'Implementing CI/CD deployment workflows, application monitoring, and automated database backup processes.',
+      'Optimizing database queries, API performance, and caching strategies for reliable application performance.',
+      'Working across backend services, deployment infrastructure, security controls, analytics, and technical SEO.'
     ],
-    technologies: ['Django', 'Node.js', 'PostgreSQL', 'Linux VPS', 'Server Hardening', 'Web Security', 'CI/CD', 'Cloud Monitoring']
+
+    technologies: [
+      'Django',
+      'Node.js',
+      'PostgreSQL',
+      'Linux',
+      'VPS Infrastructure',
+      'Server Hardening',
+      'Web Security',
+      'CI/CD',
+      'Cloudflare',
+      'Web Analytics'
+    ]
   },
+
   {
     id: 'drdo-sag',
+
     role: 'Student Intern',
+
     company: 'Scientific Analysis Group (SAG), DRDO',
-    companySubtitle: 'Defence Research and Development Organisation',
-    period: 'Jan 2026 – Present',
+
+    companySubtitle:
+      'Defence Research and Development Organisation',
+
+    period: 'Jan 2026 – April 2026',
+
     location: 'Delhi, India',
+
     current: true,
+
     type: 'Internship',
+
     highlights: [
-      'Investigating the implementation of cutting-edge lattice-based cryptographic algorithms on constrained hardware with less than 1MB of SRAM.',
-      'Ensuring strict functional and cryptographic parity with standard NIST Post-Quantum Cryptography implementations.',
-      'Successfully adapted 4+ complex C/C++ cryptographic libraries for Arduino-based microcontrollers, prioritizing firmware stability and cross-hardware compatibility.',
-      'Orchestrated low-level data handling and secure communication protocols between microcontrollers and peripheral hardware interfaces.'
+      'Researching the implementation of lattice-based post-quantum cryptographic algorithms on resource-constrained hardware with less than 1 MB of SRAM.',
+      'Working toward functional compatibility between embedded implementations and reference cryptographic implementations.',
+      'Adapted multiple C/C++ cryptographic libraries for Arduino-based microcontrollers while addressing memory and firmware constraints.',
+      'Working on low-level data handling and communication between microcontrollers and peripheral hardware interfaces.'
     ],
-    technologies: ['Post-Quantum Cryptography', 'Lattice-based Crypto', 'C', 'C++', 'Arduino', 'Embedded Systems', 'SRAM Optimization']
+
+    technologies: [
+      'Post-Quantum Cryptography',
+      'Lattice-Based Cryptography',
+      'C',
+      'C++',
+      'Arduino',
+      'Embedded Systems',
+      'Memory Optimization',
+      'Cryptographic Algorithms'
+    ]
   },
+
   {
     id: 'nari-vastaram',
+
     role: 'Freelance MERN Developer',
+
     company: 'Nari Vastaram',
-    companySubtitle: 'E-commerce Platform for Indian Women\'s Clothing',
-    period: 'April 2025 – July 2025',
+
+    companySubtitle:
+      "E-commerce Platform for Indian Women's Clothing",
+
+    period: 'Apr 2025 – Jul 2025',
+
     location: 'Remote',
+
     current: false,
+
     type: 'Freelance',
+
     highlights: [
-      'Engineered a complete full-stack e-commerce platform using React.js, Node.js, Express.js, and MongoDB for an Indian fashion brand, managing 50+ SKUs.',
-      'Handled 100% of launch day traffic flawlessly with zero downtime on a custom-configured Hostinger VPS.',
-      'Architected high-throughput RESTful APIs with Express.js for catalog filtering, cart management, and seamless order lifecycle handling.',
-      'Built a responsive mobile-first React UI with dynamic filters and integrated a secure payment gateway checkout flow.',
-      'Developed a custom Node.js admin dashboard providing real-time inventory updates, order tracking, and sales analytics, eliminating manual spreadsheets.'
+      'Developed a full-stack e-commerce platform using React.js, Node.js, Express.js, and MongoDB for an Indian fashion brand with 50+ SKUs.',
+      'Designed RESTful APIs for product catalog management, filtering, cart operations, and order processing.',
+      'Built a responsive mobile-first frontend with product filtering, cart management, and payment gateway integration.',
+      'Developed an administrative dashboard for inventory management, order tracking, and sales monitoring.',
+      'Deployed the production application on a Linux VPS with custom server and reverse-proxy configuration.'
     ],
-    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Payment Gateway', 'Hostinger VPS', 'RESTful APIs']
+
+    technologies: [
+      'React.js',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'REST APIs',
+      'Payment Gateway',
+      'Linux VPS',
+      'Nginx'
+    ]
   }
 ];
 
 export const PROJECTS: Project[] = [
   {
     id: 'follope',
+
     title: 'Follope',
+
     subtitle: 'Freelancer Invoice & Payment Tracking Platform',
+
     category: 'fintech',
+
     featured: true,
+
     isStartup: true,
-    badge: 'My Startup / SaaS',
+
+    badge: 'Startup / SaaS',
+
     description:
-      'A specialized FinTech SaaS engineered to eliminate late payments for freelancers and boutique agencies through automated invoice generation, real-time UPI tracking, and scheduled client follow-ups.',
-    tags: ['FinTech', 'SaaS', 'Django', 'PostgreSQL', 'Redis', 'Celery', 'UPI Workflows', 'Webhooks'],
+      'A FinTech SaaS platform designed to help freelancers and independent professionals generate invoices, track payments, and automate overdue payment follow-ups.',
+
+    tags: [
+      'FinTech',
+      'SaaS',
+      'Django',
+      'PostgreSQL',
+      'Redis',
+      'Celery',
+      'UPI',
+      'Webhooks'
+    ],
+
     keyFeatures: [
-      'One-click professional invoice generation with GST & tax presets',
-      'Direct UPI payment integration & webhook-driven reconciliation',
-      'Automated background payment reminders powered by Celery queues',
-      'Bank-grade secret management and webhook HMAC verification'
+      'Professional invoice generation with tax and discount support',
+      'UPI payment workflows with webhook-based payment tracking',
+      'Automated background payment reminders using Celery',
+      'Secure webhook signature verification',
+      'Protected application secrets and environment-based configuration',
+      'Containerized deployment and CI/CD automation'
     ],
+
+    architecture: [
+      'Django REST Framework API layer',
+      'PostgreSQL relational database',
+      'Redis-backed Celery task processing',
+      'Webhook-driven payment reconciliation',
+      'Docker-based deployment architecture',
+      'Automated CI/CD pipeline'
+    ],
+
     stats: [
-      { label: 'Architecture', value: 'Django + Redis' },
-      { label: 'Target Market', value: 'Freelancers & SMEs' }
+      { label: 'Architecture', value: 'Django + PostgreSQL + Redis' },
+      { label: 'Target Users', value: 'Freelancers & SMEs' }
     ],
+
     liveUrl: 'https://follope.com'
   },
+
   {
     id: 'robotic-sir-platform',
+
     title: 'Robotic Sir Platform',
+
     subtitle: 'Robotics & Technology Community Platform',
+
     category: 'community',
+
     featured: true,
-    badge: 'Enterprise / Community',
+
+    badge: 'Production Platform',
+
     description:
-      'A comprehensive EdTech and community platform unifying robotics and AI enthusiasts, offering courses, competition registration, interactive member portfolios, and automated event pipelines.',
-    tags: ['EdTech', 'Community', 'Django', 'Node.js', 'PostgreSQL', 'SEO', 'Cloud Deployment', 'Analytics'],
-    keyFeatures: [
-      'Multi-tier student and member ecosystem with individualized portfolio pages',
-      'Curated courses, hands-on tutorials, and robotics event registration pipelines',
-      'Comprehensive technical SEO implementation with Google Analytics & Search Console integration',
-      'Automated webhook triggers and cloud-backed media asset pipelines'
+      'A robotics and AI education platform combining community features, courses, competitions, member portfolios, event workflows, and technical content.',
+
+    tags: [
+      'EdTech',
+      'Community',
+      'Django',
+      'Node.js',
+      'PostgreSQL',
+      'SEO',
+      'Cloud Deployment',
+      'Analytics'
     ],
+
+    keyFeatures: [
+      'Student and member profiles with individual portfolio pages',
+      'Course and educational content management',
+      'Competition and event registration workflows',
+      'Technical SEO implementation with structured metadata',
+      'Google Analytics and Search Console integration',
+      'Cloud-hosted media and automated deployment workflows'
+    ],
+
+    architecture: [
+      'RESTful backend services',
+      'PostgreSQL data layer',
+      'Cloud-hosted application infrastructure',
+      'Automated deployment pipeline',
+      'Analytics and search monitoring'
+    ],
+
     stats: [
       { label: 'Domain', value: 'Robotics & AI' },
-      { label: 'Stack', value: 'Full-Stack Cloud' }
+      { label: 'Platform', value: 'Education + Community' }
     ]
   },
+
   {
     id: 'school-erp',
+
     title: 'School Management System (ERP)',
-    subtitle: 'Enterprise Academic & Administrative Solution',
+
+    subtitle: 'Academic & Administrative Management Platform',
+
     category: 'systems',
+
     featured: true,
+
     badge: 'Enterprise ERP',
+
     description:
-      'A comprehensive educational ERP system streamlining academic, financial, and administrative operations with multi-level role-based access for Admins, Teachers, and Students.',
-    tags: ['TypeScript', 'Node.js', 'MySQL', 'Express.js', 'Three.js', 'Role-Based Access'],
-    keyFeatures: [
-      'Multi-level JWT authentication separating Admin, Faculty, and Student privileges',
-      'Dynamic attendance tracking and fee management with automated invoice generation',
-      'Centralized examination grading engine with dynamic grade-point evaluation',
-      'Normalized relational MySQL schema engineered to handle 1,000+ active student records'
+      'A role-based educational ERP designed to manage academic, administrative, attendance, examination, and fee-management workflows.',
+
+    tags: [
+      'TypeScript',
+      'Node.js',
+      'MySQL',
+      'Express.js',
+      'JWT',
+      'RBAC',
+      'REST APIs'
     ],
+
+    keyFeatures: [
+      'Role-based JWT authentication for administrators, faculty, and students',
+      'Attendance management and academic record tracking',
+      'Fee management and invoice generation workflows',
+      'Examination and grading management',
+      'Normalized relational database schema',
+      'Designed to support 1,000+ student records'
+    ],
+
+    architecture: [
+      'Node.js + Express.js API layer',
+      'MySQL relational database',
+      'JWT authentication',
+      'Role-based access control',
+      'RESTful service architecture'
+    ],
+
     stats: [
       { label: 'Records', value: '1,000+ Students' },
-      { label: 'Database', value: 'MySQL Relational' }
+      { label: 'Database', value: 'MySQL' }
     ],
+
     githubUrl: 'https://github.com/Kshitij-Raj-01/'
   },
+
   {
     id: 'waste-ex',
+
     title: 'WasteEx — B2B Industrial Marketplace',
-    subtitle: 'Circular Economy Platform with Blockchain Escrow',
+
+    subtitle: 'Circular Economy Marketplace',
+
     category: 'systems',
+
     featured: true,
+
     badge: 'Web3 / B2B',
+
     description:
-      'A full-stack circular economy marketplace enabling industrial enterprises to list, negotiate, and trade industrial waste materials as reusable raw resources.',
-    tags: ['TypeScript', 'Node.js', 'MongoDB', 'Blockchain', 'Smart Contracts', 'Socket.IO', 'Cloudinary'],
+      'A full-stack B2B marketplace concept for industrial waste trading, enabling businesses to list materials, negotiate transactions, communicate in real time, and manage trade workflows.',
+
+    tags: [
+      'TypeScript',
+      'Node.js',
+      'MongoDB',
+      'Blockchain',
+      'Smart Contracts',
+      'Socket.IO',
+      'Cloudinary'
+    ],
+
     keyFeatures: [
-      'Blockchain-based smart contracts with an escrow payment mechanism for trustless high-value B2B transactions',
-      'Low-latency real-time chat dashboard built with Socket.IO for buyer-seller negotiations',
-      'Cloudinary media integration with RESTful APIs managing listings, contracts, and role-based profiles'
+      'Blockchain-based escrow workflow for B2B transactions',
+      'Real-time buyer-seller communication using Socket.IO',
+      'Role-based profiles and marketplace listings',
+      'RESTful APIs for listings and transaction workflows',
+      'Cloudinary-based media management',
+      'Smart-contract integration for transaction settlement'
     ],
+
+    architecture: [
+      'Node.js backend',
+      'MongoDB data layer',
+      'Socket.IO real-time communication',
+      'Blockchain smart-contract layer',
+      'Cloudinary media storage'
+    ],
+
     stats: [
-      { label: 'Security', value: 'Escrow Smart Contract' },
-      { label: 'Messaging', value: 'Real-time WebSockets' }
+      { label: 'Transaction Model', value: 'Smart Contract Escrow' },
+      { label: 'Communication', value: 'Real-time WebSockets' }
     ],
+
     githubUrl: 'https://github.com/Kshitij-Raj-01/'
   },
+
   {
     id: 'blog-loom',
+
     title: 'Blog Loom — Full-Stack CMS',
-    subtitle: 'Modern Publishing Platform with AWS Cloud Storage',
+
+    subtitle: 'Modern Publishing Platform with Cloud Storage',
+
     category: 'fullstack',
+
     featured: false,
+
     badge: 'CMS / Cloud',
+
     description:
-      'A feature-rich content management platform built on the MERN stack featuring rich-text authoring, AWS S3 image distribution, and category-based indexing.',
-    tags: ['React.js', 'Node.js', 'MongoDB', 'AWS S3', 'Express.js', 'JWT Auth'],
+      'A full-stack content management platform featuring rich-text publishing, authentication, commenting, category-based content organization, and cloud-based image storage.',
+
+    tags: [
+      'React.js',
+      'Node.js',
+      'MongoDB',
+      'AWS S3',
+      'Express.js',
+      'JWT'
+    ],
+
     keyFeatures: [
-      'Rich-text article editor with direct AWS S3 asset uploads and responsive layouts',
-      'Interactive nested commenting system and category-based real-time post filtering',
-      'Hardened JWT authentication with bcrypt password hashing and route middleware guards'
+      'Rich-text article creation and editing',
+      'AWS S3-based image and media uploads',
+      'Category-based content organization',
+      'Nested commenting functionality',
+      'JWT authentication and protected routes',
+      'Password hashing using bcrypt'
     ],
+
+    architecture: [
+      'React.js frontend',
+      'Node.js + Express.js backend',
+      'MongoDB database',
+      'AWS S3 object storage',
+      'JWT authentication'
+    ],
+
     stats: [
-      { label: 'Storage', value: 'AWS S3 CDN' },
-      { label: 'Security', value: 'JWT & Bcrypt' }
+      { label: 'Storage', value: 'AWS S3' },
+      { label: 'Authentication', value: 'JWT + bcrypt' }
     ],
+
     githubUrl: 'https://github.com/Kshitij-Raj-01/'
   },
+
   {
     id: 'nari-vastaram-proj',
+
     title: 'Nari Vastaram E-Commerce',
-    subtitle: 'High-Conversion Fashion Commerce Platform',
+
+    subtitle: 'Production Fashion Commerce Platform',
+
     category: 'fullstack',
+
     featured: false,
-    badge: 'Client Production',
+
+    badge: 'Client Project',
+
     description:
-      'Production e-commerce storefront and admin console built for an Indian apparel brand, handling full order processing, inventory sync, and payment gateway transactions.',
-    tags: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Payment Gateway', 'VPS'],
-    keyFeatures: [
-      'Mobile-first catalog with instant multi-facet product filtering and cart persistence',
-      'Automated inventory tracking console reducing client operational overhead to zero manual logs',
-      'Custom production deployment on Hostinger VPS with Nginx reverse proxy'
+      'A production e-commerce platform for an Indian apparel brand covering product discovery, cart management, order processing, inventory management, and payment workflows.',
+
+    tags: [
+      'React.js',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'Payment Gateway',
+      'Linux VPS',
+      'Nginx'
     ],
+
+    keyFeatures: [
+      'Mobile-first product catalog with multi-criteria filtering',
+      'Persistent shopping cart functionality',
+      'Payment gateway integration',
+      'Administrative inventory management',
+      'Order tracking and management',
+      'Production deployment on a Linux VPS'
+    ],
+
+    architecture: [
+      'React.js frontend',
+      'Node.js + Express.js backend',
+      'MongoDB database',
+      'Payment gateway integration',
+      'Nginx reverse proxy'
+    ],
+
     stats: [
-      { label: 'SKUs', value: '50+ Items' },
-      { label: 'Uptime', value: '100% Launch' }
+      { label: 'Catalog', value: '50+ SKUs' },
+      { label: 'Deployment', value: 'Linux VPS' }
     ]
   }
 ];
@@ -302,78 +559,135 @@ export const PROJECTS: Project[] = [
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: 'Backend & Systems Architecture',
+
     icon: 'Server',
-    description: 'Designing resilient microservices, high-throughput APIs, and asynchronous message queues.',
+
+    description:
+      'Designing maintainable backend services, REST APIs, asynchronous processing systems, and event-driven workflows.',
+
     skills: [
       { name: 'Django / DRF', level: 'Advanced', highlight: true },
-      { name: 'Node.js & Express.js', level: 'Advanced', highlight: true },
-      { name: 'RESTful API Design', level: 'Expert', highlight: true },
-      { name: 'Celery & Redis Queues', level: 'Advanced', highlight: true },
-      { name: 'WebSockets (Socket.IO)', level: 'Proficient' },
-      { name: 'Microservices & Webhooks', level: 'Advanced' }
+      { name: 'Node.js / Express.js', level: 'Advanced', highlight: true },
+      { name: 'RESTful API Design', level: 'Advanced', highlight: true },
+      { name: 'Celery & Redis', level: 'Advanced', highlight: true },
+      { name: 'WebSockets / Socket.IO', level: 'Proficient' },
+      { name: 'Webhooks & Event-Driven Systems', level: 'Advanced' }
     ]
   },
+
   {
-    title: 'Databases & In-Memory Stores',
+    title: 'Databases & Data Systems',
+
     icon: 'Database',
-    description: 'Relational data modeling, schema normalization, ACID guarantees, and caching strategies.',
+
+    description:
+      'Designing relational schemas, data models, indexes, caching strategies, and persistence layers.',
+
     skills: [
       { name: 'PostgreSQL', level: 'Advanced', highlight: true },
-      { name: 'Redis Caching', level: 'Advanced', highlight: true },
-      { name: 'MySQL Relational Schema', level: 'Advanced' },
-      { name: 'MongoDB NoSQL', level: 'Advanced' },
+      { name: 'MySQL', level: 'Advanced', highlight: true },
+      { name: 'MongoDB', level: 'Advanced' },
+      { name: 'Redis', level: 'Advanced', highlight: true },
+      { name: 'SQL & Data Modeling', level: 'Advanced' },
       { name: 'Query Optimization', level: 'Proficient' }
     ]
   },
+
   {
-    title: 'Security, Cryptography & Systems',
+    title: 'Security & Cryptography',
+
     icon: 'ShieldCheck',
-    description: 'Post-quantum cryptographic research, hardware adaptation, and server hardening.',
+
+    description:
+      'Application security, server hardening, authentication, secure API design, and applied cryptographic research.',
+
     skills: [
-      { name: 'Post-Quantum Cryptography', level: 'Research Level', highlight: true },
-      { name: 'Lattice-based Algorithms', level: 'Research Level', highlight: true },
-      { name: 'Server Hardening & Linux', level: 'Advanced', highlight: true },
-      { name: 'Secret & Key Management', level: 'Advanced' },
-      { name: 'JWT & Bcrypt Security', level: 'Expert' },
-      { name: 'C/C++ Embedded Firmware', level: 'Proficient' }
+      {
+        name: 'Post-Quantum Cryptography',
+        level: 'Research',
+        highlight: true
+      },
+      {
+        name: 'Lattice-Based Cryptography',
+        level: 'Research',
+        highlight: true
+      },
+      {
+        name: 'Linux Server Hardening',
+        level: 'Advanced',
+        highlight: true
+      },
+      {
+        name: 'API & Web Security',
+        level: 'Advanced',
+        highlight: true
+      },
+      {
+        name: 'Secret & Key Management',
+        level: 'Proficient'
+      },
+      {
+        name: 'JWT & Password Security',
+        level: 'Advanced'
+      },
+      {
+        name: 'C/C++ Embedded Security',
+        level: 'Proficient'
+      }
     ]
   },
+
   {
     title: 'DevOps, Cloud & Infrastructure',
+
     icon: 'Cloud',
-    description: 'Automating deployments, containerization, VPS hosting, and server health monitoring.',
+
+    description:
+      'Deploying and operating web applications using containers, VPS infrastructure, reverse proxies, and automated delivery pipelines.',
+
     skills: [
-      { name: 'Docker & Containers', level: 'Proficient', highlight: true },
-      { name: 'CI/CD Automation', level: 'Advanced', highlight: true },
-      { name: 'AWS Cloud (S3, IAM)', level: 'Proficient' },
-      { name: 'VPS Hosting (Hostinger/Linux)', level: 'Advanced' },
-      { name: 'Nginx Configuration', level: 'Proficient' },
-      { name: 'Cloudflare & Monitoring', level: 'Proficient' }
+      { name: 'Docker', level: 'Proficient', highlight: true },
+      { name: 'CI/CD', level: 'Advanced', highlight: true },
+      { name: 'Linux / VPS Administration', level: 'Advanced', highlight: true },
+      { name: 'Nginx', level: 'Proficient' },
+      { name: 'AWS S3 / IAM', level: 'Proficient' },
+      { name: 'Cloudflare', level: 'Proficient' },
+      { name: 'Monitoring & Backups', level: 'Proficient' }
     ]
   },
+
   {
     title: 'Programming Languages',
+
     icon: 'Code2',
-    description: 'Strong polyglot foundation across high-level scripting, compiled systems, and web languages.',
+
+    description:
+      'Polyglot development across backend engineering, systems programming, embedded development, and web applications.',
+
     skills: [
       { name: 'Python', level: 'Advanced', highlight: true },
+      { name: 'JavaScript', level: 'Advanced', highlight: true },
       { name: 'TypeScript', level: 'Advanced', highlight: true },
-      { name: 'JavaScript (ES6+)', level: 'Expert', highlight: true },
-      { name: 'C / C++', level: 'Intermediate (Embedded)', highlight: true },
+      { name: 'C / C++', level: 'Intermediate', highlight: true },
       { name: 'SQL', level: 'Advanced' },
       { name: 'PHP', level: 'Familiar' }
     ]
   },
+
   {
-    title: 'Frontend & Interactive UIs',
+    title: 'Frontend & Web',
+
     icon: 'Layout',
-    description: 'Building responsive, sleek developer experiences and customer interfaces.',
+
+    description:
+      'Building responsive web interfaces and integrating frontend applications with secure backend services.',
+
     skills: [
       { name: 'React.js', level: 'Advanced', highlight: true },
-      { name: 'Tailwind CSS', level: 'Advanced', highlight: true },
-      { name: 'Three.js / 3D Canvas', level: 'Familiar' },
-      { name: 'HTML5 & Modern CSS', level: 'Expert' },
-      { name: 'SEO & Web Vitals', level: 'Advanced' }
+      { name: 'Tailwind CSS', level: 'Advanced' },
+      { name: 'HTML5 & CSS3', level: 'Advanced' },
+      { name: 'Three.js', level: 'Familiar' },
+      { name: 'SEO & Web Performance', level: 'Advanced' }
     ]
   }
 ];
@@ -381,36 +695,81 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 export const RESEARCH_AND_HONORS = [
   {
     id: 'vedic-crypto',
+
     type: 'Research Paper',
-    title: 'Integrating Vedic Mathematics in Post-Quantum Cryptography',
-    institution: 'Presented at IKVI 2025, Shobhit University',
+
+    title:
+      'Integrating Vedic Mathematics in Post-Quantum Cryptography',
+
+    institution:
+      'Presented at IKVI 2025, Shobhit University',
+
     year: '2025',
-    status: 'Abstract Published / Full Paper Under Review',
+
+    status:
+      'Abstract Published / Full Paper Under Review',
+
     description:
-      'Investigated computational optimizations in Post-Quantum Cryptography by synthesizing ancient Vedic mathematical algorithms (such as Urdhva Tiryagbhyam and Nikhilam multiplication) with lattice-based encryption algorithms to enhance modular arithmetic efficiency in hardware-constrained environments.',
-    tags: ['Post-Quantum Cryptography', 'Vedic Mathematics', 'Lattice Cryptography', 'Algorithm Optimization']
+      'Explored potential computational optimizations for post-quantum cryptographic operations by investigating Vedic mathematical techniques, including Urdhva Tiryagbhyam and Nikhilam-based multiplication, in the context of lattice-based cryptographic computations and constrained hardware.',
+
+    tags: [
+      'Post-Quantum Cryptography',
+      'Vedic Mathematics',
+      'Lattice Cryptography',
+      'Algorithm Optimization'
+    ]
   },
+
   {
     id: 'sih-hackathon',
+
     type: 'Hackathon Award',
-    title: 'Winner — Internal Smart India Hackathon 2025',
-    institution: 'Shobhit University',
+
+    title:
+      'Winner — Internal Smart India Hackathon 2025',
+
+    institution:
+      'Shobhit University',
+
     year: '2025',
+
     status: 'First Place Winner',
+
     description:
-      'Engineered an on-device privacy-centric image processing solution designed to automatically detect and blur inappropriate visuals in real-time. Prioritized local computation to protect user privacy without transmitting raw personal imagery to cloud endpoints.',
-    tags: ['Computer Vision', 'On-Device AI', 'Data Privacy', 'Hackathon Winner']
+      'Developed an on-device computer vision solution for detecting and blurring inappropriate visual content in real time, with a focus on local processing and privacy-preserving image analysis.',
+
+    tags: [
+      'Computer Vision',
+      'On-Device AI',
+      'Data Privacy',
+      'Hackathon Winner'
+    ]
   },
+
   {
     id: 'peer-workshop',
+
     type: 'Technical Leadership',
-    title: 'Lead Instructor — Peer-to-Peer Workshop on MERN Development',
-    institution: 'Shobhit University',
+
+    title:
+      'Lead Instructor — Peer Workshop on MERN Development',
+
+    institution:
+      'Shobhit University',
+
     year: '2025',
+
     status: 'Conducted & Mentored',
+
     description:
-      'Conducted hands-on technical workshops teaching university peers full-stack web development with the MERN stack. Mentored student teams on building RESTful APIs, database schema design, and production deployment best practices.',
-    tags: ['Mentorship', 'MERN Stack', 'Public Speaking', 'Code Review']
+      'Conducted a hands-on peer workshop covering MERN-stack development, REST API design, database modeling, authentication, and deployment practices.',
+
+    tags: [
+      'Mentorship',
+      'MERN Stack',
+      'Technical Training',
+      'Public Speaking'
+    ]
   }
 ];
 
@@ -430,38 +789,85 @@ export interface Certification {
 export const CERTIFICATIONS: Certification[] = [
   {
     id: 'google-cybersecurity',
+
     title: 'Google Cybersecurity Professional Certificate',
-    issuer: 'Google (via Coursera)',
-    badge: 'Professional Credential',
-    issuerType: 'Cybersecurity & Systems',
-    description: 'Rigorous industry certification covering network security architecture, Linux bash administration, SQL database querying, SIEM tools (Splunk, Chronicle), Python automation for security tasks, and incident response frameworks.',
-    skills: ['Network Security', 'Linux Administration', 'SQL Security', 'Python for Cyber', 'SIEM Tools', 'Incident Response'],
+
+    issuer: 'Google / Coursera',
+
+    badge: 'Professional Certificate',
+
+    issuerType: 'Cybersecurity',
+
+    description:
+      'Professional cybersecurity training covering security fundamentals, Linux, Python, SQL, networking, SIEM concepts, incident response, and security operations.',
+
+    skills: [
+      'Cybersecurity',
+      'Linux',
+      'Python',
+      'SQL',
+      'Network Security',
+      'SIEM',
+      'Incident Response'
+    ],
+
     verifyUrl: 'https://www.coursera.org/',
-    certificateFile: '/certificates/google-cybersecurity.pdf',
-    credentialId: 'COURSERA-GOOGLE-CYBER-8849'
+
+    certificateFile: '/certificates/google-cybersecurity.pdf'
   },
+
   {
     id: 'pregrad-mern',
+
     title: 'MERN Stack Engineering Certification',
+
     issuer: 'Pregrad',
-    badge: 'Course Completion',
-    issuerType: 'Full-Stack Architecture',
-    description: 'End-to-end full-stack software development with React.js, Node.js, Express.js, and MongoDB, covering RESTful API architecture, authentication, database indexing, and production cloud deployment.',
-    skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'RESTful APIs', 'JWT Security'],
+
+    badge: 'Course Certificate',
+
+    issuerType: 'Full-Stack Development',
+
+    description:
+      'Full-stack development training covering React.js, Node.js, Express.js, MongoDB, REST APIs, authentication, and application deployment.',
+
+    skills: [
+      'React.js',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'REST APIs',
+      'JWT Authentication'
+    ],
+
     verifyUrl: 'https://pregrad.in/',
-    certificateFile: '/certificates/pregrad-mern.pdf',
-    credentialId: 'PREGRAD-MERN-2025-0192'
+
+    certificateFile: '/certificates/pregrad-mern.pdf'
   },
+
   {
     id: 'nptel-cs',
+
     title: 'NPTEL Computer Science Certification',
-    issuer: 'NPTEL / IIT (Ministry of Education, Govt. of India)',
-    badge: 'Government / IIT Accredited',
-    issuerType: 'Core Computer Science',
-    description: 'National Programme on Technology Enhanced Learning certification validated by Indian Institutes of Technology (IITs), certifying core computer science rigor in data structures, algorithms, and computational theory.',
-    skills: ['Data Structures & Algorithms', 'Database Systems', 'Computer Networks', 'Algorithm Analysis'],
+
+    issuer: 'NPTEL',
+
+    badge: 'NPTEL Certificate',
+
+    issuerType: 'Computer Science',
+
+    description:
+      'NPTEL certification in computer science coursework, demonstrating structured academic learning through the IIT-led NPTEL platform.',
+
+    skills: [
+      'Computer Science',
+      'Data Structures',
+      'Algorithms',
+      'Database Systems',
+      'Computer Networks'
+    ],
+
     verifyUrl: 'https://nptel.ac.in/',
-    certificateFile: '/certificates/nptel-cs.pdf',
-    credentialId: 'NPTEL-IIT-CS-2025-7741'
+
+    certificateFile: '/certificates/nptel-cs.pdf'
   }
 ];

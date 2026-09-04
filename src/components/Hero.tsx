@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Terminal, Server, Lock, Cpu, Database, FileText } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
@@ -47,12 +48,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
               <ArrowRight className="w-4 h-4" />
             </a>
 
-            <a
-              href="#projects"
+            <Link
+              to="/projects"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800/80 text-slate-200 border border-slate-700 font-medium text-sm hover:bg-slate-800 hover:text-white transition-all hover:-translate-y-0.5"
             >
               <span>View Projects</span>
-            </a>
+            </Link>
 
             <button
               onClick={onOpenTerminal}
