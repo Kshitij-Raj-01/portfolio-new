@@ -85,117 +85,28 @@ body {
 
 /* ==========================================================================
    PRINT STYLES FOR RESUME
-   Ensures ONLY the resume sheet prints cleanly in black & white without
-   backgrounds, navbars, footers, or dark modal elements.
+   Ensures clean black & white printing of the resume sheet
    ========================================================================== */
 @media print {
-  /* Set clean white page and reset margins */
   @page {
-    margin: 12mm 15mm;
+    margin: 10mm 15mm;
     size: auto;
   }
 
   html, body {
     background: #ffffff !important;
     color: #000000 !important;
-    font-size: 10pt !important;
-    line-height: 1.4 !important;
     margin: 0 !important;
     padding: 0 !important;
-    overflow: visible !important;
   }
 
-  /* Hide entire page tree except the resume modal */
-  body > * {
-    display: none !important;
-  }
-
-  /* But show the root where the modal lives */
-  body > #root {
-    display: block !important;
-  }
-
-  /* Inside root, hide everything except the printable resume modal */
-  #root > * {
-    display: none !important;
-  }
-
-  /* Make sure modal container is visible and occupies full print page */
-  #printable-resume-modal {
-    display: block !important;
-    position: static !important;
-    background: #ffffff !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    overflow: visible !important;
-    box-shadow: none !important;
-    border: none !important;
-    backdrop-filter: none !important;
-  }
-
-  #printable-resume-dialog {
-    display: block !important;
-    position: static !important;
-    background: #ffffff !important;
-    border: none !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: visible !important;
-  }
-
-  /* Hide headers, controls, toolbars, and anything marked no-print */
+  /* Hide background elements and controls */
   .no-print,
-  .no-print * {
+  header,
+  footer,
+  nav,
+  canvas,
+  button {
     display: none !important;
-  }
-
-  /* Pure white resume sheet styling for crisp printing */
-  #printable-resume-sheet {
-    background: #ffffff !important;
-    color: #111827 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    font-size: 10.5pt !important;
-    line-height: 1.4 !important;
-    overflow: visible !important;
-  }
-
-  #printable-resume-sheet * {
-    color: #111827 !important;
-    background: transparent !important;
-    border-color: #d1d5db !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
-  }
-
-  #printable-resume-sheet h1 {
-    color: #000000 !important;
-    font-size: 20pt !important;
-    font-weight: 800 !important;
-    margin-bottom: 2pt !important;
-  }
-
-  #printable-resume-sheet h2 {
-    color: #111827 !important;
-    font-size: 11pt !important;
-    font-weight: 700 !important;
-    border-bottom: 1.5pt solid #1f2937 !important;
-    padding-bottom: 2pt !important;
-    margin-top: 10pt !important;
-    margin-bottom: 5pt !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-  }
-
-  #printable-resume-sheet a {
-    color: #111827 !important;
-    text-decoration: none !important;
   }
 }
