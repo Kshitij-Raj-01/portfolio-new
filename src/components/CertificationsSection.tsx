@@ -8,7 +8,6 @@ export const CertificationsSection: React.FC = () => {
 
   const handleOpenCert = (cert: Certification) => {
     setSelectedCert(cert);
-    setViewTab(cert.id === 'nptel-cs' ? 'details' : 'pdf');
   };
 
   return (
@@ -42,7 +41,6 @@ export const CertificationsSection: React.FC = () => {
           {CERTIFICATIONS.map((cert) => {
             const isCyber = cert.id === 'google-cybersecurity';
             const isMern = cert.id === 'pregrad-mern';
-            const hasPdf = cert.id !== 'nptel-cs';
 
             return (
               <div
@@ -111,10 +109,10 @@ export const CertificationsSection: React.FC = () => {
                       className="w-full py-2.5 px-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 hover:text-white text-xs font-mono font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
                     >
                       <Eye className="w-3.5 h-3.5" />
-                      <span>{hasPdf ? 'View PDF' : 'View Details'}</span>
+                      <span>View Certificate</span>
                     </button>
 
-                    {hasPdf && cert.certificateFile ? (
+                    {cert.certificateFile ? (
                       <a
                         href={cert.certificateFile}
                         target="_blank"
@@ -185,7 +183,7 @@ export const CertificationsSection: React.FC = () => {
                 </div>
 
                 {/* Open in New Tab Button */}
-                {selectedCert.certificateFile && selectedCert.id !== 'nptel-cs' && (
+                {selectedCert.certificateFile && (
                   <a
                     href={selectedCert.certificateFile}
                     target="_blank"
@@ -199,7 +197,7 @@ export const CertificationsSection: React.FC = () => {
                 )}
 
                 {/* Download Button */}
-                {selectedCert.certificateFile && selectedCert.id !== 'nptel-cs' && (
+                {selectedCert.certificateFile && (
                   <a
                     href={selectedCert.certificateFile}
                     download
@@ -225,19 +223,24 @@ export const CertificationsSection: React.FC = () => {
             {/* Modal Body */}
             <div className="flex-1 min-h-0 bg-slate-950 relative overflow-hidden flex flex-col">
               {viewTab === 'pdf' ? (
-                selectedCert.id === 'nptel-cs' ? (
-                  /* Notice when NPTEL PDF is yet to be added */
+                selectedCert.certificateFile ? (
+                  /* Native PDF Embed Viewport */
+                  <div className="w-full h-full flex flex-col">
+                    <iframe
+                      src={`${selectedCert.certificateFile}#toolbar=1&navpanes=0`}
+                      title={selectedCert.title}
+                      className="w-full h-full flex-1 border-0 bg-slate-950"
+                    />
+                  </div>
+                ) : (
+                  /* Notice when PDF is yet to be added */
                   <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
                     <div className="w-14 h-14 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-violet-400 mb-4">
                       <FileText className="w-7 h-7" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2">NPTEL Certificate Document</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">{selectedCert.title} Document</h3>
                     <p className="text-sm text-slate-400 max-w-md mb-6 leading-relaxed">
-                      To display the real NPTEL certificate PDF here, place your file at{' '}
-                      <code className="text-cyan-400 bg-slate-900 px-2 py-0.5 rounded text-xs">
-                        public/certificates/nptel-cs.pdf
-                      </code>
-                      .
+                      PDF file is being uploaded. You can view verified credential details below.
                     </p>
                     <div className="flex flex-wrap items-center justify-center gap-3">
                       <button
@@ -253,20 +256,11 @@ export const CertificationsSection: React.FC = () => {
                           rel="noopener noreferrer"
                           className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 font-mono text-xs flex items-center gap-1.5 transition-all"
                         >
-                          <span>Visit NPTEL Portal</span>
+                          <span>Visit Verification Portal</span>
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
                       )}
                     </div>
-                  </div>
-                ) : (
-                  /* Native PDF Embed Viewport */
-                  <div className="w-full h-full flex flex-col">
-                    <iframe
-                      src={`${selectedCert.certificateFile}#toolbar=1&navpanes=0`}
-                      title={selectedCert.title}
-                      className="w-full h-full flex-1 border-0 bg-slate-950"
-                    />
                   </div>
                 )
               ) : (

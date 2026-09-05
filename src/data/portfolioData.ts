@@ -90,44 +90,50 @@ export const STARTUP_FOLLOPE = {
   websiteUrl: 'https://follope.com',
 
   description:
-    'A FinTech SaaS platform designed for freelancers and independent professionals to simplify invoice generation, payment tracking, and automated client follow-ups.',
+    'A FinTech backend platform engineered for freelancers to automate invoice generation, UPI payment reconciliation, and client follow-ups.',
 
   highlights: [
-    'Professional invoice generation with customizable tax, discounts, and itemized billing',
-    'UPI payment workflows with payment-status tracking and webhook-based reconciliation',
-    'Automated client payment reminders and overdue follow-up workflows',
-    'Asynchronous background processing using Celery and Redis',
-    'Secure webhook handling with signature verification and protected application secrets',
-    'Containerized deployment and automated CI/CD workflows'
+    'Financial computation engine with integer-paise balance tracking ensuring zero floating-point drift',
+    'Frictionless UPI payment workflows with NPCI-compliant URI generation and payment reconciliation',
+    'Automated overdue invoice detection service with contextual WhatsApp follow-up generation',
+    'Real-time push notification dispatcher integrated with the Expo Push Notification API',
+    'Transactional email system powered by Nodemailer for OTP verification, delivery, and payment receipts',
+    'Defensive API architecture with strict rate limiting, IDOR prevention, and atomic transactions'
   ],
 
   techStack: [
-    'Django REST Framework',
+    'TypeScript',
+    'Node.js',
+    'Express.js',
     'PostgreSQL',
-    'Redis',
-    'Celery',
-    'UPI Payment Integration',
-    'Docker',
-    'Webhooks',
-    'CI/CD',
-    'Cloud Infrastructure'
+    'Prisma ORM',
+    'UPI Protocol & QR Generation',
+    'Expo Push API',
+    'Nodemailer (SMTP / OTP)',
+    'JWT & Argon2 / Bcrypt',
+    'Zod Validation'
   ],
 
   architectureHighlights: [
     {
-      title: 'Core Backend',
+      title: 'Core Backend & API Layer',
       desc:
-        'Django REST Framework with modular application structure, relational data modeling, authentication, and API-layer validation.'
+        'Modular Express service-repository pattern with strict separation of concerns, transactional Prisma operations, and strong TypeScript typings.'
     },
     {
-      title: 'Async Processing',
+      title: 'Financial & Invoice Engine',
       desc:
-        'Celery workers with Redis for background jobs, scheduled payment checks, notifications, and automated follow-up workflows.'
+        'Deterministic integer-paise arithmetic, revision tracking, and secure CUID public tokens preventing enumeration of private invoice data.'
     },
     {
-      title: 'Security Layer',
+      title: 'Reminder & Push Engine',
       desc:
-        'Webhook signature verification, protected environment secrets, authentication controls, rate limiting, and secure API design.'
+        'Automated overdue audit engine, multi-channel alert delivery (Push & Email), and pre-composed WhatsApp follow-up messaging.'
+    },
+    {
+      title: 'Security & Resilience Layer',
+      desc:
+        'Cryptographic password hashing, SHA-256 hashed refresh token rotations, granular CORS policies, and rate-limiting on sensitive auth and public routes.'
     }
   ]
 };
@@ -265,40 +271,41 @@ export const PROJECTS: Project[] = [
     badge: 'Startup / SaaS',
 
     description:
-      'A FinTech SaaS platform designed to help freelancers and independent professionals generate invoices, track payments, and automate overdue payment follow-ups.',
+      'A FinTech SaaS platform designed to help freelancers and independent professionals generate invoices, collect instant UPI payments, and automate relationship-preserving overdue follow-ups.',
 
     tags: [
       'FinTech',
       'SaaS',
-      'Django',
+      'TypeScript',
+      'Node.js',
+      'Express',
       'PostgreSQL',
-      'Redis',
-      'Celery',
-      'UPI',
-      'Webhooks'
+      'Prisma',
+      'React Native',
+      'UPI'
     ],
 
     keyFeatures: [
-      'Professional invoice generation with tax and discount support',
-      'UPI payment workflows with webhook-based payment tracking',
-      'Automated background payment reminders using Celery',
-      'Secure webhook signature verification',
-      'Protected application secrets and environment-based configuration',
-      'Containerized deployment and CI/CD automation'
+      'Itemized invoice generator with tax, discounts, and integer-paise precision (zero floating-point errors)',
+      'Dynamic UPI checkout links & on-the-fly QR code generation for instant client payment',
+      'Browser-based public invoice viewer requiring zero client app installation',
+      'Automated overdue detection with ready-to-send 1-tap WhatsApp follow-up messages',
+      'Real-time mobile push notifications (Expo Push API) on invoice views, payments, and due dates',
+      'Secure multi-channel auth with Email OTP verification, JWTs, and SHA-256 hashed refresh tokens'
     ],
 
     architecture: [
-      'Django REST Framework API layer',
-      'PostgreSQL relational database',
-      'Redis-backed Celery task processing',
-      'Webhook-driven payment reconciliation',
-      'Docker-based deployment architecture',
-      'Automated CI/CD pipeline'
+      'TypeScript & Express API with layered service-repository pattern and Zod validation',
+      'PostgreSQL database with Prisma ORM and atomic ACID transactions',
+      'CUID-isolated public tokens preventing IDOR and internal data exposure',
+      'Automated overdue reminder engine with background Expo Push dispatching',
+      'Cross-platform mobile application powered by React Native (Expo SDK 54) & NativeWind',
+      'Transactional email engine using Nodemailer SMTP for OTPs and payment receipts'
     ],
 
     stats: [
-      { label: 'Architecture', value: 'Django + PostgreSQL + Redis' },
-      { label: 'Target Users', value: 'Freelancers & SMEs' }
+      { label: 'Architecture', value: 'TypeScript + Node.js + PostgreSQL' },
+      { label: 'Target Users', value: 'Freelancers & Independent Pros' }
     ],
 
     liveUrl: 'https://follope.com'
@@ -851,23 +858,24 @@ export const CERTIFICATIONS: Certification[] = [
   {
     id: 'nptel-cs',
 
-    title: 'NPTEL Computer Science Certification',
+    title: 'NPTEL Practical Cybersecurity Certification',
 
     issuer: 'NPTEL',
 
     badge: 'NPTEL Certificate',
 
-    issuerType: 'Computer Science',
+    issuerType: 'Cybersecurity',
 
     description:
-      'NPTEL certification in computer science coursework, demonstrating structured academic learning through the IIT-led NPTEL platform.',
+      'NPTEL certification in practical cybersecurity coursework, demonstrating structured academic learning through the IIT-led NPTEL platform.',
 
     skills: [
-      'Computer Science',
-      'Data Structures',
-      'Algorithms',
-      'Database Systems',
-      'Computer Networks'
+      'Cybersecurity',
+      'Computer Networks',
+      'Cryptography',
+      'Linux',
+      'Web Security',
+      'Network Security'
     ],
 
     verifyUrl: 'https://nptel.ac.in/',
