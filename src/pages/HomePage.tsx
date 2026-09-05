@@ -37,7 +37,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <span>FEATURED WORK</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
-              Selected Projects &amp; Applications
+              Projects &amp; Applications
             </h2>
             <p className="mt-2 text-slate-400 text-sm max-w-xl">
               Production backends, SaaS tools, and web applications I've engineered and deployed.
@@ -118,7 +118,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-3">
                 <ShieldCheck className="w-3.5 h-3.5" />
-                <span>VERIFIED CERTIFICATIONS</span>
+                <span>CERTIFICATIONS</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display mb-2">
                 Certifications &amp; Accreditations
@@ -145,7 +145,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 to="/certifications"
                 className="px-5 py-3 rounded-xl bg-cyan-500 text-slate-950 font-bold font-mono text-xs hover:bg-cyan-400 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20"
               >
-                <span>Browse All Certificates &amp; PDFs</span>
+                <span>Browse All Certificates</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>

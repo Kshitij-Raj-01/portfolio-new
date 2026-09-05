@@ -48,7 +48,7 @@ export const PERSONAL_INFO = {
     'Open to Backend Developer & Web Security Opportunities',
   email: 'rajkshitijsss06@gmail.com',
   phone: '+91 9117434145',
-  location: 'Meerut / Remote, India',
+  location: 'India',
 
   education: {
     institution: 'Shobhit Institute of Engineering & Technology',
@@ -74,16 +74,16 @@ export const PERSONAL_INFO = {
   },
 
   stats: [
-    { label: 'LeetCode Solved', value: '107' },
+    { label: 'LeetCode Solved', value: '100+' },
     { label: 'Featured Projects', value: '5+' },
     { label: 'Verified Certs', value: '3' },
-    { label: 'Research Intern', value: 'DRDO SAG' }
+    { label: 'Backend Intern', value: 'Robotic Sir' }
   ]
 };
 
 export const STARTUP_FOLLOPE = {
   name: 'Follope',
-  tagline: 'FinTech Invoice & Real-Time Payment Tracking Engine',
+  tagline: 'Get paid. Without chasing.',
   role: 'Creator & Lead Backend Engineer',
   status: 'Production Architecture',
 
@@ -186,7 +186,7 @@ export const EXPERIENCES: Experience[] = [
 
     location: 'Delhi, India',
 
-    current: true,
+    current: false,
 
     type: 'Internship',
 
@@ -351,7 +351,9 @@ export const PROJECTS: Project[] = [
     stats: [
       { label: 'Domain', value: 'Robotics & AI' },
       { label: 'Platform', value: 'Education + Community' }
-    ]
+    ],
+
+    liveUrl: 'https://roboticsir.com'
   },
 
   {
@@ -402,7 +404,7 @@ export const PROJECTS: Project[] = [
       { label: 'Database', value: 'MySQL' }
     ],
 
-    githubUrl: 'https://github.com/Kshitij-Raj-01/'
+    githubUrl: 'https://github.com/Kshitij-Raj-01/School-Management-System/'
   },
 
   {
@@ -453,7 +455,7 @@ export const PROJECTS: Project[] = [
       { label: 'Communication', value: 'Real-time WebSockets' }
     ],
 
-    githubUrl: 'https://github.com/Kshitij-Raj-01/'
+    githubUrl: 'https://github.com/Kshitij-Raj-01/WasteEx/'
   },
 
   {
@@ -503,7 +505,7 @@ export const PROJECTS: Project[] = [
       { label: 'Authentication', value: 'JWT + bcrypt' }
     ],
 
-    githubUrl: 'https://github.com/Kshitij-Raj-01/'
+    githubUrl: 'https://github.com/Kshitij-Raj-01/blogging-website-frontend/'
   },
 
   {
@@ -552,7 +554,9 @@ export const PROJECTS: Project[] = [
     stats: [
       { label: 'Catalog', value: '50+ SKUs' },
       { label: 'Deployment', value: 'Linux VPS' }
-    ]
+    ],
+
+    githubUrl: "https://github.com/Kshitij-Raj-01/Nari-Vastaram-main/"
   }
 ];
 
@@ -566,7 +570,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       'Designing maintainable backend services, REST APIs, asynchronous processing systems, and event-driven workflows.',
 
     skills: [
-      { name: 'Django / DRF', level: 'Advanced', highlight: true },
+      { name: 'Django / DRF', level: 'Basic', highlight: true },
       { name: 'Node.js / Express.js', level: 'Advanced', highlight: true },
       { name: 'RESTful API Design', level: 'Advanced', highlight: true },
       { name: 'Celery & Redis', level: 'Advanced', highlight: true },
@@ -614,12 +618,12 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       },
       {
         name: 'Linux Server Hardening',
-        level: 'Advanced',
+        level: 'Intermediate',
         highlight: true
       },
       {
         name: 'API & Web Security',
-        level: 'Advanced',
+        level: 'Basic',
         highlight: true
       },
       {

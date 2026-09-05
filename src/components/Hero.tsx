@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
 
           {/* Subtitle */}
           <p className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Hi, I'm <strong className="text-white font-semibold">Kshitij Raj</strong>. Creator of <strong className="text-emerald-400 font-semibold">Follope</strong> (FinTech SaaS), backend &amp; server security engineer at <strong className="text-white font-semibold">Robotic Sir AI</strong>, and student intern researching Post-Quantum Cryptography at <strong className="text-white font-semibold">DRDO SAG</strong>.
+            Hi, I'm <strong className="text-white font-semibold">Kshitij Raj</strong>. Creator of <strong className="text-emerald-400 font-semibold">Follope</strong> (FinTech SaaS), backend &amp; server security engineer at <strong className="text-white font-semibold">Robotic Sir</strong>, and student intern researching Post-Quantum Cryptography at <strong className="text-white font-semibold">DRDO SAG</strong>.
           </p>
 
           {/* Recruiter-Friendly Primary CTAs */}
@@ -52,7 +52,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800 text-slate-100 border border-slate-700 font-semibold text-sm hover:bg-slate-750 hover:text-white transition-all hover:-translate-y-0.5 shadow-md"
             >
               <FileText className="w-4 h-4 text-cyan-400" />
-              <span>View ATS Resume</span>
+              <span>View Resume</span>
             </button>
 
             <Link
@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
         <div className="mt-16 pt-8 border-t border-slate-800/60 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-slate-400">
           <div className="flex items-center gap-2">
             <Server className="w-4 h-4 text-emerald-400" />
-            <span>Django &bull; Node.js &bull; Express</span>
+            <span>Node.js &bull; Express &bull; Django</span>
           </div>
           <div className="flex items-center gap-2">
             <Lock className="w-4 h-4 text-cyan-400" />
