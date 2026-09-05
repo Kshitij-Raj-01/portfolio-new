@@ -22,8 +22,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
 
   const navLinks = [
     { name: 'Overview', path: '/' },
-    { name: 'Projects', path: '/projects' },
     { name: 'Experience', path: '/experience' },
+    { name: 'Projects', path: '/projects' },
     { name: 'Certs 📜', path: '/certifications' },
     { name: 'Labs & Game 🛡️', path: '/labs' },
     { name: 'Notes ✍️', path: '/notes' },
