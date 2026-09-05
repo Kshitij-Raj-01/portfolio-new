@@ -46,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
           </div>
           <div className="flex flex-col">
             <span className="font-navbar font-bold text-sm sm:text-base tracking-tight text-white flex items-center gap-1.5">
-              <span>kshitij.dev</span>
+              <span>Kshitij Raj</span>
               <span className="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
             </span>
             <span className="text-[10px] text-cyan-400/80 font-mono tracking-wider">

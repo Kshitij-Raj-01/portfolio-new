@@ -19,14 +19,14 @@ interface Article {
 const ARTICLES: Article[] = [
   {
     id: 'drdo-crypto-porting',
-    title: 'Porting Lattice Cryptography to Arduino Microcontrollers with <1MB SRAM',
+    title: 'Porting Lattice Cryptography (Kyber) to ESP32 Microcontrollers',
     category: 'Security & Embedded',
     readTime: '6 min read',
     date: 'February 2026',
-    summary: 'How we adapted NIST Post-Quantum Cryptography implementations for microcontrollers with strict SRAM constraints at DRDO SAG, eliminating dynamic heap allocations.',
-    tags: ['DRDO SAG', 'Post-Quantum', 'C/C++', 'Arduino', 'SRAM Optimization'],
+    summary: 'How we adapted and ported NIST CRYSTALS-Kyber post-quantum cryptography implementations for ESP32 microcontrollers with strict SRAM constraints at DRDO SAG, eliminating dynamic heap allocations.',
+    tags: ['DRDO SAG', 'Kyber', 'ESP32', 'Post-Quantum', 'C/C++', 'SRAM Optimization'],
     content: {
-      intro: 'When implementing post-quantum lattice-based encryption (such as Module-LWE schemes) on small embedded hardware like Arduino and Cortex-M devices, standard reference implementations quickly crash due to dynamic memory fragmentation on targets having less than 1MB of SRAM.',
+      intro: 'When implementing post-quantum lattice-based encryption (CRYSTALS-Kyber / ML-KEM) on resource-constrained embedded hardware like ESP32 microcontrollers, standard reference implementations quickly encounter memory constraints. Here is how we adapted Kyber to run within ESP32 SRAM limitations.',
       sections: [
         {
           heading: '1. Eliminating Dynamic Heap Allocations',
@@ -91,14 +91,14 @@ def process_upi_payment_event(self, transaction_ref, invoice_id, amount):
   },
   {
     id: 'vedic-math-crypto',
-    title: 'Integrating Vedic Mathematics in Post-Quantum Cryptography (IKVI 2025)',
+    title: 'Integrating Vedic Mathematics in Post-Quantum Cryptography',
     category: 'Research & Algorithms',
     readTime: '7 min read',
     date: '2025',
-    summary: 'A deep dive into our published research exploring how Urdhva Tiryagbhyam and Nikhilam multiplication algorithms reduce arithmetic cycles in post-quantum lattice primitives.',
-    tags: ['Research Paper', 'Vedic Math', 'Cryptography', 'IKVI 2025'],
+    summary: 'A deep dive into our research paper exploring how Urdhva Tiryagbhyam and Nikhilam multiplication algorithms reduce arithmetic cycles in post-quantum lattice primitives.',
+    tags: ['Research Paper', 'Vedic Math', 'Cryptography', 'National Conference'],
     content: {
-      intro: 'Presented at the International Conference on Indian Knowledge from Vedic Insights (IKVI 2025), this research paper investigates modular arithmetic optimizations by integrating classical Indian mathematical formulations into quantum-resilient lattice cryptography.',
+      intro: 'Submitted at the National Conference on Contemporary Applications and Expanding Horizons of Indian Knowledge from Vedic Insights, this research paper investigates modular arithmetic optimizations by integrating classical Indian mathematical formulations into quantum-resilient lattice cryptography.',
       sections: [
         {
           heading: '1. The Arithmetic Bottleneck in Ring-LWE',
