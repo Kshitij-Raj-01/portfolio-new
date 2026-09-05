@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
 
           {/* Subtitle */}
           <p className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Hi, I'm <strong className="text-white font-semibold">Kshitij Raj</strong>. Creator of <strong className="text-emerald-400 font-semibold">Follope</strong> (FinTech SaaS), backend &amp; server security engineer at <strong className="text-white font-semibold">Robotic Sir</strong>, and student intern researching Post-Quantum Cryptography at <strong className="text-white font-semibold">DRDO SAG</strong>.
+            Hi, I'm <strong className="text-white font-semibold">Kshitij Raj</strong>. Creator of <strong className="text-emerald-400 font-semibold">Follope</strong> (FinTech SaaS), backend &amp; server security engineer at <strong className="text-white font-semibold">Robotic Sir</strong>, and student intern implementing Post-Quantum Cryptography (Kyber on ESP32) at <strong className="text-white font-semibold">DRDO SAG</strong>.
           </p>
 
           {/* Recruiter-Friendly Primary CTAs */}
@@ -97,7 +97,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
           </div>
           <div className="flex items-center gap-2">
             <Lock className="w-4 h-4 text-cyan-400" />
-            <span>Post-Quantum Cryptography (DRDO SAG)</span>
+            <span>Post-Quantum Kyber on ESP32 (DRDO SAG)</span>
           </div>
           <div className="flex items-center gap-2">
             <Database className="w-4 h-4 text-blue-400" />

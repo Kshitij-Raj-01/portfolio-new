@@ -197,21 +197,21 @@ export const EXPERIENCES: Experience[] = [
     type: 'Internship',
 
     highlights: [
-      'Researching the implementation of lattice-based post-quantum cryptographic algorithms on resource-constrained hardware with less than 1 MB of SRAM.',
-      'Working toward functional compatibility between embedded implementations and reference cryptographic implementations.',
-      'Adapted multiple C/C++ cryptographic libraries for Arduino-based microcontrollers while addressing memory and firmware constraints.',
-      'Working on low-level data handling and communication between microcontrollers and peripheral hardware interfaces.'
+      'Implemented reference CRYSTALS-Kyber (ML-KEM) post-quantum cryptographic algorithms on resource-constrained ESP32 microcontrollers.',
+      'Optimized execution and static memory layout to run Kyber within ESP32 SRAM limitations, avoiding dynamic memory fragmentation.',
+      'Adapted reference C/C++ cryptographic implementations for ESP32 hardware and validated functional equivalence against NIST test vectors.',
+      'Interfaced low-level serial communication and benchmarked key generation, encapsulation, and decapsulation cycle counts on ESP32 hardware.'
     ],
 
     technologies: [
+      'CRYSTALS-Kyber',
+      'ESP32',
       'Post-Quantum Cryptography',
-      'Lattice-Based Cryptography',
       'C',
       'C++',
-      'Arduino',
       'Embedded Systems',
       'Memory Optimization',
-      'Cryptographic Algorithms'
+      'Cryptographic Benchmarking'
     ]
   },
 
@@ -713,7 +713,7 @@ export const RESEARCH_AND_HONORS = [
       'Integrating Vedic Mathematics in Post-Quantum Cryptography',
 
     institution:
-      'Presented at IKVI 2025, Shobhit University',
+      'National Conference on Contemporary Applications and Expanding Horizons of Indian Knowledge from Vedic Insights (IKVI) at Shobhit University, India',
 
     year: '2025',
 
@@ -721,12 +721,13 @@ export const RESEARCH_AND_HONORS = [
       'Abstract Published / Full Paper Under Review',
 
     description:
-      'Explored potential computational optimizations for post-quantum cryptographic operations by investigating Vedic mathematical techniques, including Urdhva Tiryagbhyam and Nikhilam-based multiplication, in the context of lattice-based cryptographic computations and constrained hardware.',
+      'Research paper submitted in college during the National Conference on Contemporary Applications and Expanding Horizons of Indian Knowledge from Vedic Insights. Investigated algorithmic optimizations for Post-Quantum Cryptography (PQC) operations using Vedic mathematical techniques (Urdhva Tiryagbhyam vertically-and-crosswise multiplication and Nikhilam formulas) for polynomial Ring-LWE arithmetic.',
 
     tags: [
       'Post-Quantum Cryptography',
       'Vedic Mathematics',
       'Lattice Cryptography',
+      'National Conference',
       'Algorithm Optimization'
     ]
   },

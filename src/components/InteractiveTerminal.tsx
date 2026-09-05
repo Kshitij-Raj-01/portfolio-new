@@ -109,6 +109,7 @@ const AVAILABLE_COMMANDS = [
   'whoami',
   'follope',
   'drdo',
+  'paper',
   'experience',
   'projects',
   'skills',
@@ -122,6 +123,8 @@ const AVAILABLE_COMMANDS = [
   'ctf',
   'theme',
   'clear',
+  'exit',
+  'quit',
 ];
 
 export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen, onClose }) => {
@@ -138,17 +141,16 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         <div className="space-y-1">
           <div className="text-emerald-400 font-bold flex items-center gap-2">
             <ShieldCheck className="w-4 h-4" />
-            <span>Kshitij Raj Security &amp; Systems Console [v3.0.0-PROD]</span>
+            <span>Kshitij Raj Security &amp; Systems Console [v3.1.0-PROD]</span>
           </div>
           <div className="text-slate-400 text-xs">
-            Architecture: <span className="text-cyan-400">Post-Quantum Cryptography &amp; Backend Engineering</span>
+            Specialization: <span className="text-cyan-400">Post-Quantum Cryptography &bull; Backend &bull; Web Security</span>
           </div>
           <div className="text-slate-300 text-xs mt-1">
-            Type <span className="text-cyan-400 font-semibold">'help'</span> for standard commands, or try{' '}
-            <span className="text-emerald-400 font-semibold font-mono">'neofetch'</span>,{' '}
-            <span className="text-emerald-400 font-semibold font-mono">'pqc'</span>,{' '}
-            <span className="text-emerald-400 font-semibold font-mono">'scan'</span>, or{' '}
-            <span className="text-emerald-400 font-semibold font-mono">'matrix'</span>.
+            Type <span className="text-cyan-400 font-semibold">'help'</span> to view commands,{' '}
+            <span className="text-emerald-400 font-semibold font-mono">'drdo'</span> for ESP32 Kyber work,{' '}
+            <span className="text-emerald-400 font-semibold font-mono">'paper'</span> for the Vedic PQC conference research, or{' '}
+            <span className="text-slate-400 font-mono">'exit'</span> to close.
           </div>
         </div>
       ),
@@ -165,6 +167,21 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
       inputRef.current.focus();
     }
   }, [isOpen]);
+
+  // Global Escape key listener to close terminal
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleGlobalKeyDown);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleGlobalKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -184,7 +201,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
     };
     resize();
 
-    const chars = '01アイウエオカキケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンPQC256KYBER';
+    const chars = '01アイウエオカキケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンPQC256KYBERESP32';
     const fontSize = 13;
     const columns = Math.floor(canvas.width / fontSize);
     const drops: number[] = Array(columns).fill(1);
@@ -233,10 +250,10 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
       <div className="space-y-2 text-xs font-mono p-3 rounded-xl bg-black/40 border border-emerald-500/30">
         <div className="flex items-center gap-2 text-emerald-400 font-bold">
           <Lock className="w-4 h-4" />
-          <span>DRDO SAG • Post-Quantum Cryptography Simulator (LWE-256)</span>
+          <span>CRYSTALS-Kyber (ML-KEM) Post-Quantum Simulator</span>
         </div>
-        <div className="text-slate-400">
-          Target payload: <span className="text-white font-semibold">"{textToEncrypt}"</span>
+        <div className="text-slate-400 text-[11px]">
+          Simulating NIST Kyber lattice-based Key Encapsulation (reference scheme implemented on ESP32 at DRDO SAG).
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-1">
           <div className="p-2 rounded bg-slate-900/90 border border-slate-800">
@@ -244,7 +261,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             <span className="text-cyan-400 font-bold">R_q = Z_q[X]/(X^256 + 1)</span>
           </div>
           <div className="p-2 rounded bg-slate-900/90 border border-slate-800">
-            <span className="text-slate-500 block">MODULUS (q):</span>
+            <span className="text-slate-500 block">TARGET MODULUS (q):</span>
             <span className="text-cyan-400 font-bold">3329 (Kyber Standard)</span>
           </div>
         </div>
@@ -257,12 +274,12 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         <div className="pt-2 border-t border-slate-800/80">
           <span className="text-slate-500 text-[10px] block">QUANTUM-RESILIENT CIPHERTEXT VECTOR (c1, c2):</span>
           <div className="text-emerald-400 font-mono text-[11px] break-all bg-emerald-950/40 p-2 rounded border border-emerald-500/20">
-            PQC_CT_{simulatedLatticeKey}:{hexRep.slice(0, 8)}_SHOR_RESISTANT
+            PQC_KYBER_{simulatedLatticeKey}:{hexRep.slice(0, 8)}_SHOR_RESISTANT
           </div>
         </div>
         <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Lattice problem status: Shortest Vector Problem (SVP) unbroken by quantum algorithms.</span>
+          <span>Lattice problem status: Shortest Vector Problem (SVP) unbroken by quantum computing.</span>
         </div>
       </div>
     );
@@ -344,7 +361,8 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
           <div><span className="text-cyan-400 font-bold w-24 inline-block">Uptime:</span> 3+ Years in Production Code</div>
           <div><span className="text-cyan-400 font-bold w-24 inline-block">Shell:</span> bash 5.2.21 (Interactive Portfolio CLI)</div>
           <div><span className="text-cyan-400 font-bold w-24 inline-block">Flagship:</span> Follope FinTech SaaS (Express + Prisma + UPI)</div>
-          <div><span className="text-cyan-400 font-bold w-24 inline-block">Research:</span> DRDO SAG (Post-Quantum Lattice Primitives)</div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">DRDO SAG:</span> Implemented Reference Kyber on ESP32 Microcontrollers</div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">Paper:</span> Vedic PQC Optimizations (National Conference)</div>
           <div><span className="text-cyan-400 font-bold w-24 inline-block">Algorithms:</span> 107 Solved LeetCode Milestone</div>
           <div><span className="text-cyan-400 font-bold w-24 inline-block">Public Repos:</span> 17 GitHub Repositories (TypeScript, JS, Python)</div>
           <div className="pt-2 flex items-center gap-1.5">
@@ -379,7 +397,8 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-xs">
                 <div><span className="text-cyan-400 w-24 inline-block font-mono">whoami</span> About Kshitij Raj</div>
                 <div><span className="text-cyan-400 w-24 inline-block font-mono">follope</span> Inspect FinTech architecture</div>
-                <div><span className="text-cyan-400 w-24 inline-block font-mono">drdo</span> DRDO SAG research work</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">drdo</span> Implemented Kyber on ESP32</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">paper</span> Vedic PQC National Conference Paper</div>
                 <div><span className="text-cyan-400 w-24 inline-block font-mono">experience</span> Career &amp; internship track</div>
                 <div><span className="text-cyan-400 w-24 inline-block font-mono">projects</span> Production software portfolio</div>
                 <div><span className="text-cyan-400 w-24 inline-block font-mono">skills</span> Systems &amp; backend stack</div>
@@ -392,16 +411,17 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             <div className="border-t border-slate-800 pt-2">
               <div className="text-cyan-300 font-bold mb-1 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Creative Labs &amp; Security Tools:</span>
+                <span>Creative Labs &amp; Tools:</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-xs">
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">neofetch</span> ASCII system telemetry</div>
-                <div><span className="text-emerald-400 w-24 inline-block font-mono">pqc [text]</span> Post-quantum lattice encryption</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">pqc [text]</span> Post-quantum Kyber simulator</div>
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">scan</span> Run defensive server audit</div>
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">matrix</span> Toggle digital rain mode</div>
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">ctf</span> Cybersecurity flag challenge</div>
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">theme</span> Switch theme (matrix/amber/etc)</div>
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">clear</span> Reset console screen</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">exit</span> Close terminal window</div>
               </div>
             </div>
           </div>
@@ -563,14 +583,44 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
 
       case 'drdo':
         response = (
-          <div className="space-y-1 text-xs">
+          <div className="space-y-1.5 text-xs">
             <div className="text-emerald-400 font-bold text-sm">
-              Scientific Analysis Group (SAG), DRDO
+              Scientific Analysis Group (SAG), DRDO — Student Intern
             </div>
-            <div className="text-white">Role: Student Intern (Jan 2026 – Present)</div>
-            <div className="text-slate-300 text-[11px] space-y-0.5 mt-1">
-              <div>• Researching lattice-based post-quantum cryptographic primitives on microcontrollers (&lt;1MB SRAM).</div>
-              <div>• Adapting multi-precision modular polynomial arithmetic libraries for embedded hardware.</div>
+            <div className="text-cyan-400 font-semibold text-[11px]">
+              Implementation: Porting CRYSTALS-Kyber (ML-KEM) to ESP32 Microcontrollers
+            </div>
+            <div className="text-slate-300 text-[11px] space-y-1 mt-1">
+              <div>• Implemented and adapted reference C/C++ CRYSTALS-Kyber post-quantum cryptographic primitives on ESP32 hardware with strict SRAM constraints (&lt;520KB).</div>
+              <div>• Optimized static memory layout, avoided dynamic memory fragmentation, and verified functional equivalence against NIST test vectors.</div>
+              <div>• Interfaced serial communication and benchmarked key generation, encapsulation, and decapsulation cycle counts on ESP32 development boards.</div>
+            </div>
+            <div className="text-[10px] text-slate-500 pt-1 border-t border-slate-800">
+              Note: This DRDO work was an embedded implementation of existing Kyber on hardware. For the theoretical Vedic PQC optimization paper, type <span className="text-cyan-400 font-bold">'paper'</span>.
+            </div>
+          </div>
+        );
+        break;
+
+      case 'paper':
+      case 'research':
+      case 'conference':
+      case 'vedic':
+        response = (
+          <div className="space-y-1.5 text-xs">
+            <div className="text-emerald-400 font-bold text-sm">
+              Research Paper: Integrating Vedic Mathematics in Post-Quantum Cryptography
+            </div>
+            <div className="text-cyan-400 font-semibold text-[11px]">
+              Submitted at: National Conference on Contemporary Applications and Expanding Horizons of Indian Knowledge from Vedic Insights
+            </div>
+            <div className="text-slate-300 text-[11px] space-y-1 mt-1">
+              <div>• Research paper submitted in college investigating mathematical and algorithmic optimizations for quantum-resilient lattice cryptography.</div>
+              <div>• Explored classical Vedic mathematical formulas (Urdhva Tiryagbhyam vertically-and-crosswise multiplication &amp; Nikhilam method) to accelerate polynomial Ring-LWE modular arithmetic.</div>
+              <div>• Demonstrated clock cycle reductions in modular polynomial multiplication steps.</div>
+            </div>
+            <div className="text-[10px] text-slate-500 pt-1 border-t border-slate-800">
+              Status: Abstract Published / Full Paper Under Review. (Distinct from the DRDO SAG embedded Kyber porting project).
             </div>
           </div>
         );
@@ -666,6 +716,13 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         );
         break;
 
+      case 'exit':
+      case 'quit':
+      case ':q':
+      case 'close':
+        onClose();
+        return;
+
       case 'clear':
         setHistory([]);
         return;
@@ -674,7 +731,8 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         response = (
           <div className="text-red-400 text-xs">
             Command not recognized: <span className="font-bold">{cmd}</span>. Type{' '}
-            <span className="text-cyan-400 font-semibold">'help'</span> for a list of valid commands.
+            <span className="text-cyan-400 font-semibold">'help'</span> for a list of valid commands or{' '}
+            <span className="text-white font-semibold">'exit'</span> to close.
           </div>
         );
     }
@@ -682,7 +740,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
     setHistory((prev) => [...prev, { command: cmd, output: response }]);
     setCmdList((prev) => [...prev, cmd]);
     setHistoryIndex(-1);
-  }, [matrixActive]);
+  }, [matrixActive, onClose]);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -726,13 +784,17 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md animate-fadeIn">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-fadeIn cursor-pointer"
+      onClick={onClose}
+    >
       <div
+        onClick={(e) => e.stopPropagation()}
         className={`w-full ${
           isExpanded ? 'h-[92vh] max-w-6xl' : 'max-w-3xl h-[560px]'
         } flex flex-col rounded-2xl ${themeConfig.bg} border ${
           themeConfig.border
-        } shadow-2xl overflow-hidden transition-all duration-300 font-mono relative`}
+        } shadow-2xl overflow-hidden transition-all duration-300 font-mono relative cursor-default`}
       >
         {/* Matrix Canvas Layer */}
         {matrixActive && (
@@ -748,12 +810,15 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         >
           <div className="flex items-center gap-2">
             <div
-              className="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={onClose}
-              title="Close terminal"
+              className="w-3.5 h-3.5 rounded-full bg-red-500 hover:bg-red-400 cursor-pointer transition-colors shadow-sm"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+              title="Close terminal (Esc or 'exit')"
             />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-            <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+            <div className="w-3.5 h-3.5 rounded-full bg-yellow-500/80" />
+            <div className="w-3.5 h-3.5 rounded-full bg-emerald-500/80" />
             <span className="text-xs text-slate-400 ml-2 font-medium flex items-center gap-1.5">
               <TerminalIcon className={`w-3.5 h-3.5 ${themeConfig.promptArrow}`} />
               <span>guest@kshitij-vps:~ (bash)</span>
@@ -768,6 +833,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
           {/* Quick theme selector and controls */}
           <div className="flex items-center gap-2 text-slate-400">
             <button
+              type="button"
               onClick={() => {
                 const themes: TerminalTheme[] = ['default', 'matrix', 'amber', 'cyberpunk', 'dracula'];
                 const next = themes[(themes.indexOf(theme) + 1) % themes.length];
@@ -781,6 +847,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             </button>
 
             <button
+              type="button"
               onClick={() => setIsExpanded(!isExpanded)}
               className="p-1 hover:text-white rounded hover:bg-slate-800 transition-colors"
               title={isExpanded ? 'Restore' : 'Maximize'}
@@ -788,9 +855,13 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
               {isExpanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
             </button>
             <button
-              onClick={onClose}
-              className="p-1 hover:text-white rounded hover:bg-slate-800 transition-colors"
-              title="Close"
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+              className="p-1 hover:text-white rounded hover:bg-slate-800 transition-colors text-slate-400"
+              title="Close terminal (Esc or 'exit')"
             >
               <X className="w-4 h-4" />
             </button>

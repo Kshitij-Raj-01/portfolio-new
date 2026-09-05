@@ -18,7 +18,7 @@ export const ExperiencePage: React.FC = () => {
           Work Experience &amp; Research Track
         </h1>
         <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          From developing post-quantum cryptographic primitives on resource-constrained microcontrollers at DRDO SAG to architecting high-throughput production backends at Robotic Sir AI India.
+          From implementing reference post-quantum cryptography (Kyber) on ESP32 microcontrollers at DRDO SAG to architecting high-throughput production backends at Robotic Sir AI India.
         </p>
       </div>
 
