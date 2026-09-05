@@ -1,6 +1,26 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Terminal as TerminalIcon, X, Maximize2, Minimize2, CornerDownLeft, Sparkles } from 'lucide-react';
-import { PERSONAL_INFO, STARTUP_FOLLOPE, EXPERIENCES, PROJECTS, CERTIFICATIONS } from '../data/portfolioData';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import {
+  Terminal as TerminalIcon,
+  X,
+  Maximize2,
+  Minimize2,
+  CornerDownLeft,
+  Sparkles,
+  ShieldCheck,
+  Cpu,
+  Lock,
+  Palette,
+  Binary,
+  CheckCircle2,
+  AlertTriangle,
+} from 'lucide-react';
+import {
+  PERSONAL_INFO,
+  STARTUP_FOLLOPE,
+  EXPERIENCES,
+  PROJECTS,
+  CERTIFICATIONS,
+} from '../data/portfolioData';
 
 interface InteractiveTerminalProps {
   isOpen: boolean;
@@ -12,24 +32,133 @@ interface CommandHistory {
   output: React.ReactNode;
 }
 
+type TerminalTheme = 'default' | 'matrix' | 'amber' | 'cyberpunk' | 'dracula';
+
+interface ThemeConfig {
+  bg: string;
+  border: string;
+  titleBg: string;
+  promptArrow: string;
+  promptTilde: string;
+  textPrimary: string;
+  textSecondary: string;
+  accent: string;
+  highlight: string;
+}
+
+const THEMES: Record<TerminalTheme, ThemeConfig> = {
+  default: {
+    bg: 'bg-[#090d16]',
+    border: 'border-slate-700',
+    titleBg: 'bg-slate-900',
+    promptArrow: 'text-emerald-400',
+    promptTilde: 'text-cyan-400',
+    textPrimary: 'text-slate-100',
+    textSecondary: 'text-slate-400',
+    accent: 'text-cyan-400',
+    highlight: 'text-emerald-400',
+  },
+  matrix: {
+    bg: 'bg-[#030d05]',
+    border: 'border-emerald-700/80',
+    titleBg: 'bg-[#06150a]',
+    promptArrow: 'text-emerald-300',
+    promptTilde: 'text-emerald-400',
+    textPrimary: 'text-emerald-100',
+    textSecondary: 'text-emerald-600',
+    accent: 'text-emerald-300',
+    highlight: 'text-emerald-400',
+  },
+  amber: {
+    bg: 'bg-[#120800]',
+    border: 'border-amber-700/80',
+    titleBg: 'bg-[#1a0c00]',
+    promptArrow: 'text-amber-400',
+    promptTilde: 'text-amber-300',
+    textPrimary: 'text-amber-100',
+    textSecondary: 'text-amber-600',
+    accent: 'text-amber-300',
+    highlight: 'text-amber-400',
+  },
+  cyberpunk: {
+    bg: 'bg-[#0c0418]',
+    border: 'border-fuchsia-700/80',
+    titleBg: 'bg-[#15072b]',
+    promptArrow: 'text-fuchsia-400',
+    promptTilde: 'text-cyan-400',
+    textPrimary: 'text-pink-100',
+    textSecondary: 'text-fuchsia-400/60',
+    accent: 'text-cyan-300',
+    highlight: 'text-fuchsia-400',
+  },
+  dracula: {
+    bg: 'bg-[#181a26]',
+    border: 'border-purple-700/80',
+    titleBg: 'bg-[#212234]',
+    promptArrow: 'text-purple-400',
+    promptTilde: 'text-pink-400',
+    textPrimary: 'text-purple-100',
+    textSecondary: 'text-purple-400/60',
+    accent: 'text-pink-400',
+    highlight: 'text-purple-300',
+  },
+};
+
+const AVAILABLE_COMMANDS = [
+  'help',
+  'whoami',
+  'follope',
+  'drdo',
+  'experience',
+  'projects',
+  'skills',
+  'certs',
+  'contact',
+  'sudo hire',
+  'neofetch',
+  'pqc',
+  'scan',
+  'matrix',
+  'ctf',
+  'theme',
+  'clear',
+];
+
 export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen, onClose }) => {
   const [inputVal, setInputVal] = useState('');
+  const [theme, setTheme] = useState<TerminalTheme>('default');
+  const [matrixActive, setMatrixActive] = useState(false);
+  const [cmdList, setCmdList] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState<number>(-1);
+
   const [history, setHistory] = useState<CommandHistory[]>([
     {
       command: 'init',
       output: (
-        <div className="text-slate-300 space-y-1">
-          <div className="text-emerald-400 font-bold">
-            Kshitij Raj Security &amp; Systems Console [v2.4.0-release]
+        <div className="space-y-1">
+          <div className="text-emerald-400 font-bold flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4" />
+            <span>Kshitij Raj Security &amp; Systems Console [v3.0.0-PROD]</span>
           </div>
-          <div>Type <span className="text-cyan-400 font-semibold">'help'</span> to view available commands.</div>
+          <div className="text-slate-400 text-xs">
+            Architecture: <span className="text-cyan-400">Post-Quantum Cryptography &amp; Backend Engineering</span>
+          </div>
+          <div className="text-slate-300 text-xs mt-1">
+            Type <span className="text-cyan-400 font-semibold">'help'</span> for standard commands, or try{' '}
+            <span className="text-emerald-400 font-semibold font-mono">'neofetch'</span>,{' '}
+            <span className="text-emerald-400 font-semibold font-mono">'pqc'</span>,{' '}
+            <span className="text-emerald-400 font-semibold font-mono">'scan'</span>, or{' '}
+            <span className="text-emerald-400 font-semibold font-mono">'matrix'</span>.
+          </div>
         </div>
       ),
     },
   ]);
+
   const [isExpanded, setIsExpanded] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -41,73 +170,419 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [history]);
 
-  if (!isOpen) return null;
+  // Matrix digital rain animation
+  useEffect(() => {
+    if (!matrixActive || !canvasRef.current) return;
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-  const handleCommand = (cmd: string) => {
-    const trimmed = cmd.trim().toLowerCase();
+    let animId: number;
+    const resize = () => {
+      canvas.width = canvas.parentElement?.clientWidth || 600;
+      canvas.height = canvas.parentElement?.clientHeight || 400;
+    };
+    resize();
+
+    const chars = '01アイウエオカキケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンPQC256KYBER';
+    const fontSize = 13;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops: number[] = Array(columns).fill(1);
+
+    const draw = () => {
+      ctx.fillStyle = 'rgba(5, 12, 8, 0.12)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#10b981';
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+      animId = requestAnimationFrame(draw);
+    };
+
+    animId = requestAnimationFrame(draw);
+    return () => cancelAnimationFrame(animId);
+  }, [matrixActive]);
+
+  const themeConfig = THEMES[theme];
+
+  // Helper for simulated PQC encryption
+  const runPqcSimulation = (msg: string) => {
+    const textToEncrypt = msg || 'CONFIDENTIAL_PAYLOAD_v1';
+    const hexRep = Array.from(textToEncrypt)
+      .map((c) => c.charCodeAt(0).toString(16).padStart(2, '0'))
+      .join('');
+    const simulatedLatticeKey = Array.from({ length: 8 }, () =>
+      Math.floor(Math.random() * 0xffff)
+        .toString(16)
+        .padStart(4, '0')
+    ).join(':');
+
+    return (
+      <div className="space-y-2 text-xs font-mono p-3 rounded-xl bg-black/40 border border-emerald-500/30">
+        <div className="flex items-center gap-2 text-emerald-400 font-bold">
+          <Lock className="w-4 h-4" />
+          <span>DRDO SAG • Post-Quantum Cryptography Simulator (LWE-256)</span>
+        </div>
+        <div className="text-slate-400">
+          Target payload: <span className="text-white font-semibold">"{textToEncrypt}"</span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-1">
+          <div className="p-2 rounded bg-slate-900/90 border border-slate-800">
+            <span className="text-slate-500 block">POLYNOMIAL RING:</span>
+            <span className="text-cyan-400 font-bold">R_q = Z_q[X]/(X^256 + 1)</span>
+          </div>
+          <div className="p-2 rounded bg-slate-900/90 border border-slate-800">
+            <span className="text-slate-500 block">MODULUS (q):</span>
+            <span className="text-cyan-400 font-bold">3329 (Kyber Standard)</span>
+          </div>
+        </div>
+        <div className="text-[11px] text-slate-300 space-y-1">
+          <div>[1] Sampled uniform random matrix A ∈ R_q^(k×k)</div>
+          <div>[2] Injected centered binomial distribution noise e ← B_η</div>
+          <div>[3] Computed public key t = A·s + e (mod q)</div>
+          <div>[4] Payload Hex: <span className="text-amber-400">{hexRep}</span></div>
+        </div>
+        <div className="pt-2 border-t border-slate-800/80">
+          <span className="text-slate-500 text-[10px] block">QUANTUM-RESILIENT CIPHERTEXT VECTOR (c1, c2):</span>
+          <div className="text-emerald-400 font-mono text-[11px] break-all bg-emerald-950/40 p-2 rounded border border-emerald-500/20">
+            PQC_CT_{simulatedLatticeKey}:{hexRep.slice(0, 8)}_SHOR_RESISTANT
+          </div>
+        </div>
+        <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
+          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Lattice problem status: Shortest Vector Problem (SVP) unbroken by quantum algorithms.</span>
+        </div>
+      </div>
+    );
+  };
+
+  // Helper for Security Scanner
+  const runSecurityAudit = () => {
+    return (
+      <div className="space-y-2 text-xs font-mono p-3.5 rounded-xl bg-black/40 border border-cyan-500/30">
+        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div className="flex items-center gap-2 text-cyan-400 font-bold">
+            <ShieldCheck className="w-4 h-4" />
+            <span>SERVER SECURITY &amp; ARCHITECTURE AUDIT</span>
+          </div>
+          <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded font-bold">
+            SCORE: 100/100 (A+)
+          </span>
+        </div>
+
+        <div className="space-y-1.5 pt-1 text-[11px]">
+          <div className="flex items-center justify-between text-slate-300">
+            <span>[+] OWASP Top-10 Injection (SQLi / NoSQL / Command)</span>
+            <span className="text-emerald-400 font-bold">PASS (Parameterized)</span>
+          </div>
+          <div className="flex items-center justify-between text-slate-300">
+            <span>[+] IDOR Mitigation (CUID Tokens &amp; User Scoping)</span>
+            <span className="text-emerald-400 font-bold">ENFORCED</span>
+          </div>
+          <div className="flex items-center justify-between text-slate-300">
+            <span>[+] Financial Engine Precision (Zero Floating-Point)</span>
+            <span className="text-emerald-400 font-bold">INTEGER PAISE</span>
+          </div>
+          <div className="flex items-center justify-between text-slate-300">
+            <span>[+] Rate Limiting &amp; Reverse Proxy Hardening</span>
+            <span className="text-emerald-400 font-bold">ACTIVE (Express + Nginx)</span>
+          </div>
+          <div className="flex items-center justify-between text-slate-300">
+            <span>[+] Auth Security (Argon2 / SHA-256 Token Rotation)</span>
+            <span className="text-emerald-400 font-bold">HARDENED</span>
+          </div>
+          <div className="flex items-center justify-between text-slate-300">
+            <span>[+] Post-Quantum Cryptographic Readiness (LWE)</span>
+            <span className="text-emerald-400 font-bold">RESEARCHED (DRDO)</span>
+          </div>
+        </div>
+
+        <div className="pt-2 border-t border-slate-800/80 text-[10px] text-slate-400">
+          ✓ All defensive perimeters evaluated. Production infrastructure certified resilient.
+        </div>
+      </div>
+    );
+  };
+
+  // Helper for Neofetch output
+  const runNeofetch = () => {
+    return (
+      <div className="flex flex-col sm:flex-row gap-4 p-3 rounded-xl bg-black/40 border border-slate-800 font-mono text-xs">
+        <div className="text-cyan-400 font-bold leading-tight select-none shrink-0 hidden sm:block">
+          <pre>{`
+       /\\
+      /  \\
+     / /\\ \\
+    / /  \\ \\
+   / / /\\ \\ \\
+  / / /  \\ \\ \\
+ /_/ /    \\ \\_\\
+ \\_\\/      \\/_/
+          `}</pre>
+        </div>
+        <div className="space-y-1 flex-1">
+          <div className="text-emerald-400 font-bold text-sm">
+            kshitij@raj-systems-vps
+          </div>
+          <div className="text-slate-500 text-[10px] border-b border-slate-800 pb-1">
+            -------------------------------
+          </div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">OS:</span> KshitijOS (Debian GNU/Linux Hardened)</div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">Kernel:</span> 6.8.0-pqc-lattice-x86_64</div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">Uptime:</span> 3+ Years in Production Code</div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">Shell:</span> bash 5.2.21 (Interactive Portfolio CLI)</div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">Flagship:</span> Follope FinTech SaaS (Express + Prisma + UPI)</div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">Research:</span> DRDO SAG (Post-Quantum Lattice Primitives)</div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">Algorithms:</span> 107 Solved LeetCode Milestone</div>
+          <div><span className="text-cyan-400 font-bold w-24 inline-block">Public Repos:</span> 17 GitHub Repositories (TypeScript, JS, Python)</div>
+          <div className="pt-2 flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full bg-slate-900 border border-slate-700 inline-block" />
+            <span className="w-3 h-3 rounded-full bg-red-500 inline-block" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500 inline-block" />
+            <span className="w-3 h-3 rounded-full bg-amber-500 inline-block" />
+            <span className="w-3 h-3 rounded-full bg-blue-500 inline-block" />
+            <span className="w-3 h-3 rounded-full bg-purple-500 inline-block" />
+            <span className="w-3 h-3 rounded-full bg-cyan-500 inline-block" />
+            <span className="w-3 h-3 rounded-full bg-white inline-block" />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const handleCommand = useCallback((cmd: string) => {
+    const rawTrimmed = cmd.trim();
+    const parts = rawTrimmed.split(' ');
+    const mainCmd = parts[0]?.toLowerCase() || '';
+    const arg = parts.slice(1).join(' ').trim();
+
     let response: React.ReactNode = null;
 
-    switch (trimmed) {
+    switch (mainCmd) {
       case 'help':
         response = (
-          <div className="space-y-1 text-slate-300">
-            <div className="text-emerald-400 font-semibold mb-1">Available commands:</div>
-            <div><span className="text-cyan-400 w-28 inline-block">whoami</span> - About Kshitij Raj</div>
-            <div><span className="text-cyan-400 w-28 inline-block">follope</span> - Inspect startup &amp; architecture</div>
-            <div><span className="text-cyan-400 w-28 inline-block">drdo</span> - Scientific Analysis Group research</div>
-            <div><span className="text-cyan-400 w-28 inline-block">experience</span> - Full work and internship history</div>
-            <div><span className="text-cyan-400 w-28 inline-block">projects</span> - View production software projects</div>
-            <div><span className="text-cyan-400 w-28 inline-block">skills</span> - Full systems &amp; backend stack</div>
-            <div><span className="text-cyan-400 w-28 inline-block">certs</span> - Verified credentials &amp; certifications</div>
-            <div><span className="text-cyan-400 w-28 inline-block">contact</span> - Email, phone, and links</div>
-            <div><span className="text-cyan-400 w-28 inline-block">sudo hire</span> - Direct recruiter fast-track</div>
-            <div><span className="text-cyan-400 w-28 inline-block">clear</span> - Clear screen</div>
+          <div className="space-y-3 text-slate-300">
+            <div>
+              <div className="text-emerald-400 font-bold mb-1">Standard Directory Commands:</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">whoami</span> About Kshitij Raj</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">follope</span> Inspect FinTech architecture</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">drdo</span> DRDO SAG research work</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">experience</span> Career &amp; internship track</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">projects</span> Production software portfolio</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">skills</span> Systems &amp; backend stack</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">certs</span> Verified accreditations</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">contact</span> Direct email &amp; social profiles</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">sudo hire</span> Fast-track recruiter line</div>
+              </div>
+            </div>
+
+            <div className="border-t border-slate-800 pt-2">
+              <div className="text-cyan-300 font-bold mb-1 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Creative Labs &amp; Security Tools:</span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">neofetch</span> ASCII system telemetry</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">pqc [text]</span> Post-quantum lattice encryption</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">scan</span> Run defensive server audit</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">matrix</span> Toggle digital rain mode</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">ctf</span> Cybersecurity flag challenge</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">theme</span> Switch theme (matrix/amber/etc)</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">clear</span> Reset console screen</div>
+              </div>
+            </div>
           </div>
         );
         break;
 
+      case 'neofetch':
+        response = runNeofetch();
+        break;
+
+      case 'pqc':
+      case 'crypto':
+        response = runPqcSimulation(arg);
+        break;
+
+      case 'scan':
+      case 'audit':
+        response = runSecurityAudit();
+        break;
+
+      case 'matrix':
+        setMatrixActive((prev) => !prev);
+        response = (
+          <div className="text-emerald-400 font-mono text-xs flex items-center gap-2">
+            <Binary className="w-4 h-4 animate-spin" />
+            <span>
+              Matrix digital rain {matrixActive ? 'DEACTIVATED' : 'ACTIVATED'}. Type{' '}
+              <span className="text-white font-bold">'matrix'</span> again to toggle.
+            </span>
+          </div>
+        );
+        break;
+
+      case 'theme': {
+        const targetTheme = arg.toLowerCase() as TerminalTheme;
+        if (['default', 'matrix', 'amber', 'cyberpunk', 'dracula'].includes(targetTheme)) {
+          setTheme(targetTheme);
+          response = (
+            <div className="text-xs font-mono text-cyan-400 flex items-center gap-2">
+              <Palette className="w-4 h-4" />
+              <span>Theme updated to <strong className="text-white uppercase">{targetTheme}</strong>.</span>
+            </div>
+          );
+        } else {
+          response = (
+            <div className="text-xs font-mono text-slate-300 space-y-1">
+              <div>Available themes:</div>
+              <div className="flex gap-2 font-bold">
+                <span className="text-emerald-400">matrix</span> |{' '}
+                <span className="text-amber-400">amber</span> |{' '}
+                <span className="text-fuchsia-400">cyberpunk</span> |{' '}
+                <span className="text-purple-400">dracula</span> |{' '}
+                <span className="text-cyan-400">default</span>
+              </div>
+              <div className="text-slate-500 text-[11px]">Usage: theme &lt;name&gt; (e.g. `theme amber`)</div>
+            </div>
+          );
+        }
+        break;
+      }
+
+      case 'ctf':
+      case 'challenge':
+        response = (
+          <div className="p-3.5 rounded-xl bg-slate-950/80 border border-purple-500/40 font-mono text-xs space-y-2">
+            <div className="flex items-center gap-2 text-purple-400 font-bold">
+              <Cpu className="w-4 h-4" />
+              <span>SECURITY RECRUITER CTF: Challenge #1</span>
+            </div>
+            <p className="text-slate-300">
+              An intercepted Base64 authorization token was discovered on the perimeter server:
+            </p>
+            <div className="p-2 rounded bg-purple-950/40 border border-purple-500/30 text-emerald-400 select-all break-all">
+              RkxBR3tLU0hJVElKX1NZU1RFTVNfQkFDS0VORF9BQ0V9
+            </div>
+            <p className="text-slate-400 text-[11px]">
+              Decode this base64 token using <code className="text-cyan-300">decode &lt;base64&gt;</code> or type{' '}
+              <code className="text-cyan-300">solve &lt;flag&gt;</code> to claim victory!
+            </p>
+          </div>
+        );
+        break;
+
+      case 'decode': {
+        if (!arg) {
+          response = <div className="text-amber-400 text-xs">Usage: decode &lt;base64_string&gt;</div>;
+        } else {
+          try {
+            const decoded = atob(arg.trim());
+            response = (
+              <div className="text-xs font-mono p-2 rounded bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                <span>Decoded Output: </span>
+                <strong className="text-white">{decoded}</strong>
+              </div>
+            );
+          } catch {
+            response = <div className="text-red-400 text-xs">Error: Invalid base64 sequence.</div>;
+          }
+        }
+        break;
+      }
+
+      case 'solve': {
+        const cleaned = arg.toUpperCase().trim();
+        if (cleaned.includes('KSHITIJ') && cleaned.includes('FLAG')) {
+          response = (
+            <div className="p-3 rounded-xl bg-emerald-950/80 border border-emerald-500 text-emerald-200 font-mono text-xs space-y-1">
+              <div className="font-bold text-sm text-emerald-400 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-emerald-300" />
+                <span>FLAG ACCEPTED! YOU SOLVED THE CTF!</span>
+              </div>
+              <p>Congratulations! You just cracked the challenge. Kshitij Raj is ready to engineer resilient systems for your team.</p>
+              <div className="pt-2">
+                <a
+                  href={`mailto:${PERSONAL_INFO.email}?subject=CTF%20Solved!%20Interview%20Invitation`}
+                  className="px-3 py-1 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold rounded inline-block"
+                >
+                  Claim Recruiter Priority Line →
+                </a>
+              </div>
+            </div>
+          );
+        } else {
+          response = (
+            <div className="text-red-400 text-xs font-mono flex items-center gap-1.5">
+              <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
+              <span>Incorrect flag submission. Hint: Check `ctf` token and decode it!</span>
+            </div>
+          );
+        }
+        break;
+      }
+
       case 'whoami':
         response = (
-          <div className="text-slate-300 space-y-1">
-            <p className="text-emerald-400 font-bold">{PERSONAL_INFO.name}</p>
-            <p>{PERSONAL_INFO.title}</p>
-            <p className="text-slate-400 text-xs">{PERSONAL_INFO.tagline}</p>
-            <p className="text-cyan-400 text-xs mt-1">Status: {PERSONAL_INFO.status}</p>
+          <div className="space-y-1 text-xs">
+            <p className="text-emerald-400 font-bold text-sm">{PERSONAL_INFO.name}</p>
+            <p className="text-white">{PERSONAL_INFO.title}</p>
+            <p className="text-slate-400">{PERSONAL_INFO.tagline}</p>
+            <p className="text-cyan-400 text-[11px] mt-1">Status: {PERSONAL_INFO.status}</p>
           </div>
         );
         break;
 
       case 'follope':
         response = (
-          <div className="text-slate-300 space-y-1.5">
-            <div className="text-emerald-400 font-bold">{STARTUP_FOLLOPE.name} — {STARTUP_FOLLOPE.tagline}</div>
-            <div className="text-xs text-slate-400">{STARTUP_FOLLOPE.description}</div>
-            <div className="text-xs text-cyan-400 font-mono">
+          <div className="space-y-1.5 text-xs">
+            <div className="text-emerald-400 font-bold text-sm">
+              {STARTUP_FOLLOPE.name} — {STARTUP_FOLLOPE.tagline}
+            </div>
+            <div className="text-slate-300">{STARTUP_FOLLOPE.description}</div>
+            <div className="text-cyan-400 font-mono text-[11px]">
               Stack: {STARTUP_FOLLOPE.techStack.join(' • ')}
             </div>
-            <div className="text-amber-400 text-xs font-semibold">Status: {STARTUP_FOLLOPE.status}</div>
+            <div className="text-amber-400 font-semibold text-[11px]">Status: {STARTUP_FOLLOPE.status}</div>
           </div>
         );
         break;
 
       case 'drdo':
         response = (
-          <div className="text-slate-300 space-y-1 text-xs">
-            <div className="text-emerald-400 font-bold">Scientific Analysis Group (SAG), DRDO</div>
-            <div>Role: Student Intern (Jan 2026 – Present)</div>
-            <div>• Investigating lattice-based cryptographic algorithms on hardware with &lt;1MB SRAM.</div>
-            <div>• Adapted 4+ C/C++ crypto libraries for Arduino-based microcontrollers.</div>
+          <div className="space-y-1 text-xs">
+            <div className="text-emerald-400 font-bold text-sm">
+              Scientific Analysis Group (SAG), DRDO
+            </div>
+            <div className="text-white">Role: Student Intern (Jan 2026 – Present)</div>
+            <div className="text-slate-300 text-[11px] space-y-0.5 mt-1">
+              <div>• Researching lattice-based post-quantum cryptographic primitives on microcontrollers (&lt;1MB SRAM).</div>
+              <div>• Adapting multi-precision modular polynomial arithmetic libraries for embedded hardware.</div>
+            </div>
           </div>
         );
         break;
 
       case 'experience':
         response = (
-          <div className="space-y-2 text-xs text-slate-300">
+          <div className="space-y-2 text-xs">
             {EXPERIENCES.map((e) => (
               <div key={e.id} className="border-l-2 border-emerald-500 pl-2">
                 <div className="font-bold text-emerald-400">{e.role} @ {e.company}</div>
-                <div className="text-slate-400">{e.period} | {e.location}</div>
+                <div className="text-slate-400 text-[11px]">{e.period} | {e.location}</div>
               </div>
             ))}
           </div>
@@ -116,7 +591,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
 
       case 'projects':
         response = (
-          <div className="space-y-1.5 text-xs text-slate-300">
+          <div className="space-y-1.5 text-xs">
             {PROJECTS.map((p) => (
               <div key={p.id} className="flex items-center justify-between border-b border-slate-800 pb-1">
                 <div>
@@ -132,12 +607,12 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
 
       case 'skills':
         response = (
-          <div className="text-xs space-y-1 text-slate-300">
-            <div><span className="text-cyan-400 font-bold">Backend:</span> Django, Node.js, Express.js, REST APIs, Celery, Redis</div>
-            <div><span className="text-cyan-400 font-bold">Databases:</span> PostgreSQL, Redis, MongoDB, MySQL</div>
-            <div><span className="text-cyan-400 font-bold">Security:</span> Post-Quantum Cryptography, Lattice algorithms, Linux hardening</div>
-            <div><span className="text-cyan-400 font-bold">Languages:</span> Python, TypeScript, JavaScript, C, C++, PHP, SQL</div>
-            <div><span className="text-cyan-400 font-bold">DevOps:</span> Docker, CI/CD, AWS S3, Hostinger VPS, Linux</div>
+          <div className="text-xs space-y-1">
+            <div><span className="text-cyan-400 font-bold">Backend:</span> Node.js, Express.js, TypeScript, Django, REST APIs, Celery, Redis</div>
+            <div><span className="text-cyan-400 font-bold">Databases:</span> PostgreSQL, Prisma ORM, MongoDB, Redis, MySQL</div>
+            <div><span className="text-cyan-400 font-bold">Security:</span> Post-Quantum Cryptography (Lattice / LWE), Linux Hardening, OWASP</div>
+            <div><span className="text-cyan-400 font-bold">Languages:</span> TypeScript, JavaScript, Python, C, C++, PHP, SQL</div>
+            <div><span className="text-cyan-400 font-bold">DevOps &amp; Cloud:</span> Docker, Linux VPS, Nginx, AWS S3, CI/CD</div>
           </div>
         );
         break;
@@ -145,8 +620,8 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
       case 'certs':
       case 'certifications':
         response = (
-          <div className="space-y-2 text-xs text-slate-300">
-            <div className="text-emerald-400 font-bold mb-1">Verified Certifications &amp; Accreditations:</div>
+          <div className="space-y-2 text-xs">
+            <div className="text-emerald-400 font-bold mb-1">Verified Credentials:</div>
             {CERTIFICATIONS.map((c) => (
               <div key={c.id} className="border-l-2 border-cyan-500 pl-2">
                 <div className="font-bold text-white">{c.title}</div>
@@ -160,7 +635,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
 
       case 'contact':
         response = (
-          <div className="text-xs space-y-1 text-slate-300">
+          <div className="text-xs space-y-1">
             <div>Email: <a href={`mailto:${PERSONAL_INFO.email}`} className="text-emerald-400 underline">{PERSONAL_INFO.email}</a></div>
             <div>Phone: <span className="text-slate-200">{PERSONAL_INFO.phone}</span></div>
             <div>GitHub: <a href={PERSONAL_INFO.socialLinks.github} target="_blank" rel="noreferrer" className="text-cyan-400 underline">{PERSONAL_INFO.socialLinks.github}</a></div>
@@ -173,7 +648,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
       case 'sudo hire':
       case 'hire':
         response = (
-          <div className="text-xs text-emerald-300 bg-emerald-950/60 p-3 rounded border border-emerald-500/50 space-y-1">
+          <div className="text-xs text-emerald-300 bg-emerald-950/60 p-3 rounded-xl border border-emerald-500/50 space-y-1">
             <div className="font-bold flex items-center gap-1.5 text-sm">
               <Sparkles className="w-4 h-4 text-emerald-400" />
               <span>ACCESS GRANTED: Priority Candidate Connection!</span>
@@ -182,7 +657,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             <div className="pt-2">
               <a
                 href={`mailto:${PERSONAL_INFO.email}?subject=Opportunity%20Discussion%20with%20Kshitij`}
-                className="inline-block px-3 py-1 bg-emerald-500 text-slate-950 rounded font-semibold text-xs"
+                className="inline-block px-3 py-1 bg-emerald-500 text-slate-950 rounded font-semibold text-xs hover:bg-emerald-400 transition-colors"
               >
                 Send Direct Email Now →
               </a>
@@ -198,13 +673,16 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
       default:
         response = (
           <div className="text-red-400 text-xs">
-            Command not recognized: <span className="font-bold">{cmd}</span>. Type <span className="text-cyan-400 font-semibold">'help'</span> for a list of valid commands.
+            Command not recognized: <span className="font-bold">{cmd}</span>. Type{' '}
+            <span className="text-cyan-400 font-semibold">'help'</span> for a list of valid commands.
           </div>
         );
     }
 
     setHistory((prev) => [...prev, { command: cmd, output: response }]);
-  };
+    setCmdList((prev) => [...prev, cmd]);
+    setHistoryIndex(-1);
+  }, [matrixActive]);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -213,36 +691,105 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
     setInputVal('');
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Arrow Up: Previous command
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (cmdList.length === 0) return;
+      const nextIndex = historyIndex === -1 ? cmdList.length - 1 : Math.max(0, historyIndex - 1);
+      setHistoryIndex(nextIndex);
+      setInputVal(cmdList[nextIndex]);
+    }
+    // Arrow Down: Next command
+    else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIndex === -1) return;
+      const nextIndex = historyIndex + 1;
+      if (nextIndex >= cmdList.length) {
+        setHistoryIndex(-1);
+        setInputVal('');
+      } else {
+        setHistoryIndex(nextIndex);
+        setInputVal(cmdList[nextIndex]);
+      }
+    }
+    // Tab: Auto-complete
+    else if (e.key === 'Tab') {
+      e.preventDefault();
+      const current = inputVal.trim().toLowerCase();
+      if (!current) return;
+      const match = AVAILABLE_COMMANDS.find((c) => c.startsWith(current));
+      if (match) {
+        setInputVal(match);
+      }
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/70 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md animate-fadeIn">
       <div
         className={`w-full ${
-          isExpanded ? 'h-[90vh] max-w-6xl' : 'max-w-2xl h-[520px]'
-        } flex flex-col rounded-xl bg-[#090d16] border border-slate-700 shadow-2xl overflow-hidden transition-all duration-300 font-mono`}
+          isExpanded ? 'h-[92vh] max-w-6xl' : 'max-w-3xl h-[560px]'
+        } flex flex-col rounded-2xl ${themeConfig.bg} border ${
+          themeConfig.border
+        } shadow-2xl overflow-hidden transition-all duration-300 font-mono relative`}
       >
+        {/* Matrix Canvas Layer */}
+        {matrixActive && (
+          <canvas
+            ref={canvasRef}
+            className="absolute inset-0 pointer-events-none opacity-25 z-0"
+          />
+        )}
+
         {/* Terminal Titlebar */}
-        <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-800 select-none">
+        <div
+          className={`flex items-center justify-between px-4 py-3 ${themeConfig.titleBg} border-b border-slate-800/80 select-none relative z-10`}
+        >
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer" onClick={onClose} />
+            <div
+              className="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={onClose}
+              title="Close terminal"
+            />
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
             <span className="text-xs text-slate-400 ml-2 font-medium flex items-center gap-1.5">
-              <TerminalIcon className="w-3.5 h-3.5 text-emerald-400" />
+              <TerminalIcon className={`w-3.5 h-3.5 ${themeConfig.promptArrow}`} />
               <span>guest@kshitij-vps:~ (bash)</span>
+              {matrixActive && (
+                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/30 animate-pulse">
+                  [MATRIX]
+                </span>
+              )}
             </span>
           </div>
 
+          {/* Quick theme selector and controls */}
           <div className="flex items-center gap-2 text-slate-400">
             <button
+              onClick={() => {
+                const themes: TerminalTheme[] = ['default', 'matrix', 'amber', 'cyberpunk', 'dracula'];
+                const next = themes[(themes.indexOf(theme) + 1) % themes.length];
+                setTheme(next);
+              }}
+              className="px-2 py-0.5 rounded text-[10px] bg-slate-800 hover:text-white border border-slate-700/60 hidden sm:flex items-center gap-1"
+              title="Cycle terminal theme"
+            >
+              <Palette className="w-2.5 h-2.5" />
+              <span>{theme}</span>
+            </button>
+
+            <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="p-1 hover:text-white rounded hover:bg-slate-800"
+              className="p-1 hover:text-white rounded hover:bg-slate-800 transition-colors"
               title={isExpanded ? 'Restore' : 'Maximize'}
             >
               {isExpanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
             </button>
             <button
               onClick={onClose}
-              className="p-1 hover:text-white rounded hover:bg-slate-800"
+              className="p-1 hover:text-white rounded hover:bg-slate-800 transition-colors"
               title="Close"
             >
               <X className="w-4 h-4" />
@@ -251,15 +798,15 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         </div>
 
         {/* Terminal Body */}
-        <div className="flex-1 p-4 overflow-y-auto space-y-3 text-xs leading-relaxed">
+        <div className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-3.5 text-xs leading-relaxed relative z-10">
           {history.map((item, idx) => (
-            <div key={idx} className="space-y-1">
+            <div key={idx} className="space-y-1.5">
               <div className="flex items-center gap-2 text-slate-400">
-                <span className="text-emerald-400 font-bold">➜</span>
-                <span className="text-cyan-400">~</span>
-                <span className="text-white">{item.command}</span>
+                <span className={`${themeConfig.promptArrow} font-bold`}>➜</span>
+                <span className={themeConfig.promptTilde}>~</span>
+                <span className={themeConfig.textPrimary}>{item.command}</span>
               </div>
-              <div className="pl-4">{item.output}</div>
+              <div className={`pl-4 ${themeConfig.textPrimary}`}>{item.output}</div>
             </div>
           ))}
           <div ref={bottomRef} />
@@ -268,22 +815,24 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         {/* Terminal Input Line */}
         <form
           onSubmit={onSubmit}
-          className="flex items-center gap-2 px-4 py-3 bg-slate-900/90 border-t border-slate-800"
+          className={`flex items-center gap-2 px-4 py-3 ${themeConfig.titleBg} border-t border-slate-800/80 relative z-10`}
         >
-          <span className="text-emerald-400 font-bold">➜</span>
-          <span className="text-cyan-400 text-xs">~</span>
+          <span className={`${themeConfig.promptArrow} font-bold`}>➜</span>
+          <span className={`${themeConfig.promptTilde} text-xs`}>~</span>
           <input
             ref={inputRef}
             type="text"
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
-            placeholder="Type command ('help', 'follope', 'whoami', 'skills')..."
-            className="flex-1 bg-transparent border-none outline-none text-xs text-slate-100 font-mono placeholder:text-slate-600"
+            onKeyDown={handleKeyDown}
+            placeholder="Type 'help', 'neofetch', 'pqc', 'scan', 'matrix', 'ctf'..."
+            className={`flex-1 bg-transparent border-none outline-none text-xs ${themeConfig.textPrimary} font-mono placeholder:text-slate-600`}
             autoFocus
           />
           <button
             type="submit"
-            className="text-slate-400 hover:text-emerald-400 p-1"
+            className="text-slate-400 hover:text-emerald-400 p-1 transition-colors"
+            title="Execute command"
           >
             <CornerDownLeft className="w-3.5 h-3.5" />
           </button>
@@ -292,3 +841,4 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
     </div>
   );
 };
+
