@@ -78,7 +78,6 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
       <!DOCTYPE html>
       <html>
         <head>
-          <title>Kshitij_Raj_Resume</title>
           <style>
             @page {
               margin: 12mm 15mm;
