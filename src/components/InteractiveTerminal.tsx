@@ -115,7 +115,7 @@ const AVAILABLE_COMMANDS = [
   'skills',
   'certs',
   'contact',
-  'sudo hire',
+  'hire',
   'neofetch',
   'pqc',
   'scan',
@@ -404,7 +404,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
                 <div><span className="text-cyan-400 w-24 inline-block font-mono">skills</span> Systems &amp; backend stack</div>
                 <div><span className="text-cyan-400 w-24 inline-block font-mono">certs</span> Verified accreditations</div>
                 <div><span className="text-cyan-400 w-24 inline-block font-mono">contact</span> Direct email &amp; social profiles</div>
-                <div><span className="text-cyan-400 w-24 inline-block font-mono">sudo hire</span> Fast-track recruiter line</div>
+                <div><span className="text-cyan-400 w-24 inline-block font-mono">hire</span> Fast-track recruiter line</div>
               </div>
             </div>
 
@@ -695,7 +695,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         );
         break;
 
-      case 'sudo hire':
+      case 'hire':
         response = (
           <div className="text-xs text-emerald-300 bg-emerald-950/60 p-3 rounded-xl border border-emerald-500/50 space-y-1">
             <div className="font-bold flex items-center gap-1.5 text-sm">
