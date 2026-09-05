@@ -696,7 +696,6 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         break;
 
       case 'sudo hire':
-      case 'hire':
         response = (
           <div className="text-xs text-emerald-300 bg-emerald-950/60 p-3 rounded-xl border border-emerald-500/50 space-y-1">
             <div className="font-bold flex items-center gap-1.5 text-sm">
@@ -782,6 +781,8 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
       }
     }
   };
+
+  if (!isOpen) return null;
 
   return (
     <div
