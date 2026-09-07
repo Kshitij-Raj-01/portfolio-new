@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, ArrowUp, ExternalLink } from 'lucide-react';
+import { Shield, ArrowUp } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const Footer: React.FC = () => {

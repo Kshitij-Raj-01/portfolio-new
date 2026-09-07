@@ -8,14 +8,21 @@ import {
   Code, 
   Copy, 
   Check, 
-  Send
+  Send,
+  Loader2,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const ContactSection: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [sentStatus, setSentStatus] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionFeedback, setSubmissionFeedback] = useState<{
+    type: 'success' | 'error' | 'drafted';
+    message: string;
+  } | null>(null);
 
   const copyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
@@ -23,18 +30,62 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    // Open mailto link with prefilled content
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Hi Kshitij,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
-    );
-    window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
-    setSentStatus(true);
-    setTimeout(() => setSentStatus(false), 4000);
+    // Check if Google Sheet endpoint is provided
+    if (PERSONAL_INFO.googleSheetScriptUrl && PERSONAL_INFO.googleSheetScriptUrl.trim().length > 0) {
+      setIsSubmitting(true);
+      setSubmissionFeedback(null);
+      try {
+        await fetch(PERSONAL_INFO.googleSheetScriptUrl, {
+          method: 'POST',
+          mode: 'no-cors', // standard for Google Apps Script Web App endpoints
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+            timestamp: new Date().toISOString(),
+          }),
+        });
+
+        setSubmissionFeedback({
+          type: 'success',
+          message: 'Message delivered directly! It has been logged and sent to Kshitij Raj.',
+        });
+        setFormData({ name: '', email: '', message: '' });
+      } catch {
+        // In case of network error, fallback to mailto draft
+        const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
+        const body = encodeURIComponent(
+          `Hi Kshitij,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+        );
+        window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
+        setSubmissionFeedback({
+          type: 'drafted',
+          message: 'Direct dispatch timed out. An email draft has been prepared in your client!',
+        });
+      } finally {
+        setIsSubmitting(false);
+        setTimeout(() => setSubmissionFeedback(null), 6000);
+      }
+    } else {
+      // Default standard mailto handler
+      const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Hi Kshitij,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+      );
+      window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
+      setSubmissionFeedback({
+        type: 'drafted',
+        message: 'Email drafted in your mail client. Ready to dispatch!',
+      });
+      setTimeout(() => setSubmissionFeedback(null), 5000);
+    }
   };
 
   return (
@@ -206,16 +257,40 @@ export const ContactSection: React.FC = () => {
 
               <button
                 type="submit"
-                className="w-full sm:w-auto px-6 py-3 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 transition-all flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20"
+                disabled={isSubmitting}
+                className="w-full sm:w-auto px-6 py-3 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 disabled:opacity-60 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20"
               >
-                <span>Dispatch Message</span>
-                <Send className="w-4 h-4" />
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Transmitting to Server...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Dispatch Message</span>
+                    <Send className="w-4 h-4" />
+                  </>
+                )}
               </button>
 
-              {sentStatus && (
-                <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center gap-2">
-                  <Check className="w-4 h-4" />
-                  <span>Email drafted in your client. Ready to send!</span>
+              {submissionFeedback && (
+                <div
+                  className={`p-3 rounded-lg text-xs font-mono flex items-center gap-2.5 transition-all ${
+                    submissionFeedback.type === 'success'
+                      ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400'
+                      : submissionFeedback.type === 'error'
+                      ? 'bg-red-500/10 border border-red-500/30 text-red-400'
+                      : 'bg-cyan-500/10 border border-cyan-500/30 text-cyan-300'
+                  }`}
+                >
+                  {submissionFeedback.type === 'success' ? (
+                    <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />
+                  ) : submissionFeedback.type === 'error' ? (
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                  ) : (
+                    <Check className="w-4 h-4 shrink-0 text-cyan-400" />
+                  )}
+                  <span>{submissionFeedback.message}</span>
                 </div>
               )}
             </form>

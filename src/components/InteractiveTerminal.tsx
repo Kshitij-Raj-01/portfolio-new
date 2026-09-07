@@ -13,6 +13,9 @@ import {
   Binary,
   CheckCircle2,
   AlertTriangle,
+  Coffee,
+  Wifi,
+  Quote,
 } from 'lucide-react';
 import {
   PERSONAL_INFO,
@@ -122,6 +125,10 @@ const AVAILABLE_COMMANDS = [
   'matrix',
   'ctf',
   'theme',
+  'sudo',
+  'coffee',
+  'ping',
+  'quote',
   'clear',
   'exit',
   'quit',
@@ -420,6 +427,10 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">matrix</span> Toggle digital rain mode</div>
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">ctf</span> Cybersecurity flag challenge</div>
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">theme</span> Switch theme (matrix/amber/etc)</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">sudo [cmd]</span> Escalate to root privileges</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">coffee</span> Brew engineer fuel</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">ping [host]</span> ICMP latency probe</div>
+                <div><span className="text-emerald-400 w-24 inline-block font-mono">quote</span> Systems &amp; crypto philosophy</div>
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">clear</span> Reset console screen</div>
                 <div><span className="text-emerald-400 w-24 inline-block font-mono">exit</span> Close terminal window</div>
               </div>
@@ -714,6 +725,98 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
           </div>
         );
         break;
+
+      case 'sudo':
+        response = (
+          <div className="p-3 rounded-xl bg-red-950/40 border border-red-500/40 font-mono text-xs space-y-1.5 text-red-200">
+            <div className="flex items-center gap-2 font-bold text-red-400">
+              <ShieldCheck className="w-4 h-4 text-red-400" />
+              <span>[SECURITY ALERT] Root escalation intercepted!</span>
+            </div>
+            <p className="text-slate-300">
+              User <code className="text-white font-bold">guest@portfolio</code> is not in the sudoers file.
+            </p>
+            <div className="p-2 rounded bg-black/60 border border-red-500/30 text-amber-300 text-[11px]">
+              Post-Quantum Zero-Trust policy enforced by Kshitij Raj. Incident logged to DRDO SOC audit trail.
+            </div>
+          </div>
+        );
+        break;
+
+      case 'coffee':
+      case 'brew':
+        response = (
+          <div className="p-3 rounded-xl bg-amber-950/40 border border-amber-500/40 font-mono text-xs space-y-2 text-amber-200">
+            <div className="flex items-center gap-2 font-bold text-amber-400">
+              <Coffee className="w-4 h-4 text-amber-300" />
+              <span>Brewing Fresh Developer Espresso (100% Arabica)...</span>
+            </div>
+            <pre className="text-[10px] text-amber-300 font-mono leading-tight select-none">
+{`   ( (
+    ) )
+  ........
+  |      |]
+  \\      /   [200 OK] 64oz Backend Fuel Dispatched
+   \`----'    Ready to squash bugs and optimize database indices.`}
+            </pre>
+            <div className="text-[11px] text-slate-400">
+              Fueled and ready for late-night FinTech &amp; cryptography development sprints.
+            </div>
+          </div>
+        );
+        break;
+
+      case 'ping': {
+        const target = arg ? arg.trim() : 'rajkshitij.dev';
+        const ms1 = Math.floor(Math.random() * 8) + 12;
+        const ms2 = Math.floor(Math.random() * 6) + 10;
+        const ms3 = Math.floor(Math.random() * 7) + 11;
+        const avg = ((ms1 + ms2 + ms3) / 3).toFixed(1);
+        response = (
+          <div className="space-y-1 text-xs font-mono text-slate-300">
+            <div className="flex items-center gap-2 text-cyan-400 font-bold mb-1">
+              <Wifi className="w-3.5 h-3.5" />
+              <span>PING {target} (127.0.0.1): 56 data bytes</span>
+            </div>
+            <div className="text-slate-400 text-[11px] space-y-0.5">
+              <div>64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time={ms1}.2 ms</div>
+              <div>64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time={ms2}.8 ms</div>
+              <div>64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time={ms3}.1 ms</div>
+            </div>
+            <div className="text-emerald-400 pt-1 text-[11px] border-t border-slate-800">
+              --- {target} ping statistics --- 3 packets transmitted, 3 received, 0% packet loss, avg = {avg}ms
+            </div>
+          </div>
+        );
+        break;
+      }
+
+      case 'quote':
+      case 'fortune': {
+        const quotes = [
+          { quote: "Talk is cheap. Show me the code.", author: "Linus Torvalds" },
+          { quote: "There are two kinds of cryptography: that which will stop a child, and that which will stop major governments.", author: "Bruce Schneier" },
+          { quote: "Simplicity is prerequisite for reliability.", author: "Edsger W. Dijkstra" },
+          { quote: "Information is the resolution of uncertainty.", author: "Claude Shannon" },
+          { quote: "Any system is only as secure as its weakest cryptographic primitive.", author: "Systems Engineering Axiom" },
+        ];
+        const selected = quotes[Math.floor(Math.random() * quotes.length)];
+        response = (
+          <div className="p-3 rounded-xl bg-purple-950/30 border border-purple-500/30 text-xs font-mono space-y-1.5">
+            <div className="flex items-center gap-2 text-purple-400 font-bold">
+              <Quote className="w-3.5 h-3.5 text-purple-300" />
+              <span>Dev &amp; Cryptography Wisdom:</span>
+            </div>
+            <blockquote className="text-slate-200 italic pl-2 border-l-2 border-purple-400">
+              "{selected.quote}"
+            </blockquote>
+            <div className="text-right text-purple-300 text-[11px] font-semibold">
+              — {selected.author}
+            </div>
+          </div>
+        );
+        break;
+      }
 
       case 'exit':
       case 'quit':

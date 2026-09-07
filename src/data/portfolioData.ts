@@ -49,6 +49,8 @@ export const PERSONAL_INFO = {
   email: 'rajkshitijsss06@gmail.com',
   phone: '+91 9117434145',
   location: 'India',
+  // Optional: Set your deployed Google Apps Script Web App URL here to save form messages directly into Google Sheets
+  googleSheetScriptUrl: 'https://script.google.com/macros/s/AKfycbxSkOcD1GSFZ0qheh5GLyxl2YJWqngXFrwBONMVUc5r4U2eqmLeLWuaqbnMKh0SjWzS/exec',
 
   education: {
     institution: 'Shobhit Institute of Engineering & Technology',
