@@ -68,16 +68,6 @@ export const Footer: React.FC = () => {
 
           <div className="flex items-center gap-4 text-xs">
             <a
-              href={PERSONAL_INFO.socialLinks.oldPortfolio}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-slate-300 transition-colors flex items-center gap-1"
-            >
-              <span>Archived Portfolio</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <span>&bull;</span>
-            <a
               href={PERSONAL_INFO.socialLinks.github}
               target="_blank"
               rel="noreferrer"
