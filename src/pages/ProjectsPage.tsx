@@ -159,7 +159,7 @@ export const ProjectsPage: React.FC = () => {
                         target="_blank"
                         rel="noreferrer"
                         className="text-slate-400 hover:text-cyan-400 transition-colors p-1"
-                        title="Live Preview"
+                        title={project.id === 'follope' ? 'Visit Landing Page (App in Testing)' : 'Live Preview'}
                       >
                         <ExternalLink className="w-4 h-4" />
                       </a>

@@ -87,7 +87,7 @@ export const STARTUP_FOLLOPE = {
   name: 'Follope',
   tagline: 'Get paid. Without chasing.',
   role: 'Creator & Lead Backend Engineer',
-  status: 'Production Architecture',
+  status: 'App in Testing & Development • Landing Page Live',
 
   websiteUrl: 'https://follope.com',
 
@@ -307,7 +307,7 @@ export const PROJECTS: Project[] = [
 
     stats: [
       { label: 'Architecture', value: 'TypeScript + Node.js + PostgreSQL' },
-      { label: 'Target Users', value: 'Freelancers & Independent Pros' }
+      { label: 'Status', value: 'App in Testing (Landing Page Live)' }
     ],
 
     liveUrl: 'https://follope.com'

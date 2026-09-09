@@ -201,13 +201,13 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   }`}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>ATS Clean View</span>
+                  <span>Clean View</span>
                 </button>
               </div>
             ) : (
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-lg border border-cyan-500/30">
-                  ATS RESUME VIEW
+                  RESUME VIEW
                 </span>
                 <span className="text-xs text-slate-400 font-mono hidden sm:inline">
                   Kshitij_Raj_Resume
@@ -437,7 +437,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               <span className="text-emerald-400">Custom PDF active: /resume.pdf</span>
             ) : (
               <span className="text-slate-500">
-                Auto-generated ATS view &bull; Click "Print / Save as PDF" to export
+                Auto-generated view &bull; Click "Print / Save as PDF" to export
               </span>
             )}
           </div>

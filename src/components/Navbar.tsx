@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
           <button
             onClick={onOpenResume}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-navbar font-semibold bg-slate-900/90 text-violet-300 border border-slate-700/80 hover:border-violet-500/60 hover:bg-slate-850 transition-all shadow-sm"
-            title="View ATS Resume"
+            title="View Resume"
           >
             <FileText className="w-3.5 h-3.5 text-violet-400" />
             <span>Resume</span>

@@ -218,7 +218,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               Engineering Notes
             </h3>
             <p className="text-xs text-slate-400 leading-relaxed mb-3">
-              Technical write-ups on SRAM lattice crypto, zero-drop Celery queues, and Vedic multiplication.
+              Technical write-ups on SRAM lattice crypto, IDOR-resistant APIs with Prisma, and Vedic multiplication.
             </p>
             <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
               <span>Read Notes</span>

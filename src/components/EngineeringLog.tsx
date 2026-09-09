@@ -54,39 +54,48 @@ void poly_ntt_inplace(int16_t* p) {
     }
   },
   {
-    id: 'follope-celery-queues',
-    title: 'Designing Zero-Drop Celery Task Queues for FinTech Webhooks in Follope',
-    category: 'Backend Architecture',
-    readTime: '5 min read',
+    id: 'follope-idor-prisma-api',
+    title: 'Designing an IDOR-Resistant Financial API with TypeScript & Prisma',
+    category: 'Backend Security & Architecture',
+    readTime: '6 min read',
     date: 'January 2026',
-    summary: 'Architecting resilient background worker queues with Django, Redis, and Celery to handle real-time UPI payment webhooks and automated client escalation schedules without dropped tasks.',
-    tags: ['Follope', 'Django', 'Celery', 'Redis', 'FinTech'],
+    summary: 'Architecting a secure financial backend in Follope using TypeScript, Express, and Prisma ORM: eliminating IDOR vulnerabilities via CUID tokens and enforcing integer-paise accounting.',
+    tags: ['Follope', 'TypeScript', 'Prisma', 'PostgreSQL', 'Web Security', 'FinTech'],
     content: {
-      intro: 'In an invoice tracking platform like Follope, dropping a payment confirmation webhook or sending duplicate overdue reminders destroys client trust. Here is how we structured asynchronous task orchestration with idempotency and dead-letter queues.',
+      intro: 'In financial billing applications like Follope, exposing sequential database auto-increment IDs in URLs invites Insecure Direct Object Reference (IDOR) attacks where malicious actors enumerate client invoices. Here is how we engineered collision-resistant CUID public tokens, deterministic integer-paise calculations, and atomic Prisma transactions.',
       sections: [
         {
-          heading: '1. Database Idempotency Locks',
-          body: 'Incoming payment webhooks can fire duplicate events if banking gateways retry. Every webhook payload is hashed into an idempotency key and stored in Redis with an atomic SETNX check before dispatching Celery tasks.',
-          codeSnippet: `@shared_task(bind=True, max_retries=3, default_retry_delay=60)
-def process_upi_payment_event(self, transaction_ref, invoice_id, amount):
-    # 1. Acquire atomic distributed lock in Redis
-    lock_key = f"lock:payment:{transaction_ref}"
-    with redis_client.lock(lock_key, timeout=10):
-        # 2. Verify invoice status in PostgreSQL within transaction
-        with transaction.atomic():
-            invoice = Invoice.objects.select_for_update().get(id=invoice_id)
-            if invoice.status == InvoiceStatus.PAID:
-                return "Already processed"
-            invoice.mark_settled(amount)
-            # 3. Disarm future Celery reminder queues
-            revoke_scheduled_reminders(invoice_id)`
+          heading: '1. CUID Token Isolation & Anti-IDOR Layer',
+          body: 'We decoupled public client-facing links from internal database relations. Internal entities use standard relational keys, but public invoice viewing endpoints accept exclusively collision-resistant CUID tokens with zero sequential leakage.',
+          codeSnippet: `// Public read-only invoice resolution via CUID token
+export async function getPublicInvoiceByToken(publicToken: string) {
+  return await prisma.invoice.findUnique({
+    where: { publicToken }, // collision-resistant CUID
+    select: {
+      publicToken: true,
+      invoiceNumber: true,
+      dueDate: true,
+      status: true,
+      totalAmountPaise: true, // integer-paise, zero floating-point drift
+      upiPayload: true,
+      lineItems: {
+        select: { description: true, quantity: true, unitPricePaise: true }
+      },
+      // Sensitive user credentials, auth tokens & tenant IDs strictly omitted
+    }
+  });
+}`
         },
         {
-          heading: '2. Celery Worker Pool Tuning',
-          body: 'We split tasks into two distinct priority queues: `payments.high` (concurrency 8, low latency) and `reminders.scheduled` (concurrency 2, batch rate-limited) to ensure scheduled email alerts never block live payment reconciliations.'
+          heading: '2. Eliminating Floating-Point Drift: Integer-Paise Accounting',
+          body: 'JavaScript IEEE-754 floats introduce rounding errors (e.g. 0.1 + 0.2 !== 0.3). In Follope, all monetary values across taxes, discounts, line items, and balances are calculated and stored strictly as whole integer paise (₹100.50 = 10050 paise), guaranteeing deterministic arithmetic across all ledger operations.'
+        },
+        {
+          heading: '3. ACID Atomic State Transitions with Prisma',
+          body: 'Payment receipts and invoice status transitions execute inside atomic Prisma multi-table transactions ($transaction), ensuring an invoice cannot be marked as settled without updating payment records and logging the immutable audit event.'
         }
       ],
-      conclusion: 'Separating high-priority transactional state changes from scheduled background notifications guarantees sub-50ms webhook acknowledgment while maintaining 100% processing integrity.'
+      conclusion: 'Combining CUID access token isolation, deterministic integer-paise arithmetic, and Prisma atomic transactions creates a resilient, audit-grade FinTech backend that resists enumeration and financial inaccuracies.'
     }
   },
   {

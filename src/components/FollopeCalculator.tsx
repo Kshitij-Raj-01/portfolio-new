@@ -28,7 +28,7 @@ export const FollopeCalculator: React.FC<FollopeCalculatorProps> = ({ onOpenWait
             How Much Time &amp; Cashflow Are You Losing to Late Invoices?
           </h3>
           <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Adjust the sliders below to see the impact of automated UPI invoicing and Celery background payment chase queues.
+            Adjust the sliders below to see the impact of automated UPI invoicing and automated background reminder sweeps.
           </p>
         </div>
 

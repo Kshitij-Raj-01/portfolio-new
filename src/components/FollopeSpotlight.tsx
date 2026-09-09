@@ -12,9 +12,9 @@ import {
   RefreshCw,
   ExternalLink,
   Code2,
-  Lock,
-  Zap,
-  ArrowRight
+  ArrowRight,
+  KeyRound,
+  Calculator
 } from 'lucide-react';
 import { STARTUP_FOLLOPE } from '../data/portfolioData';
 
@@ -27,32 +27,32 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = () => {
 
   const engineeringDecisions = [
     {
-      title: 'Idempotency & Race Condition Prevention',
-      icon: <Lock className="w-4 h-4 text-emerald-400" />,
-      tag: 'Redis Distributed Locks',
+      title: 'Server-Authoritative Financial Engine',
+      icon: <Calculator className="w-4 h-4 text-emerald-400" />,
+      tag: 'Deterministic Math',
       detail:
-        'Payment gateway callbacks can retry aggressively. Each inbound webhook acquires an atomic Redis SETNX lock on the transaction hash before entering a Django database transaction, guaranteeing zero duplicate ledger entries.',
+        'Deterministic integer-paise calculations across taxes, discounts, and line items, completely eliminating floating-point drift.',
     },
     {
-      title: 'Dual-Priority Celery Queues',
-      icon: <Zap className="w-4 h-4 text-cyan-400" />,
-      tag: 'Celery + Redis Broker',
+      title: 'CUID Token Isolation & Anti-IDOR',
+      icon: <KeyRound className="w-4 h-4 text-cyan-400" />,
+      tag: 'Access Security',
       detail:
-        'Worker processes are partitioned into `payments.high` (concurrency 8, low latency) and `reminders.batch` (concurrency 2, rate-limited) so mass reminder schedules never delay real-time settlement webhooks.',
+        'Read-only public invoice viewing layer via collision-resistant CUID tokens that leak no sequential IDs or user identifiers.',
     },
     {
-      title: 'HMAC Webhook Cryptographic Audit',
-      icon: <ShieldCheck className="w-4 h-4 text-purple-400" />,
-      tag: 'Security Layer',
+      title: 'Automated Background Reminder Sweeps',
+      icon: <BellRing className="w-4 h-4 text-purple-400" />,
+      tag: 'Sweep Daemon & Expo Push',
       detail:
-        'All incoming callbacks are signed with SHA-256 HMAC tokens. The backend performs constant-time comparisons to prevent timing attacks and spoofed payment notifications.',
+        'Scheduled sweep daemon triggering localized WhatsApp templates and push alerts via the Expo Push API.',
     },
     {
-      title: 'Optimized PostgreSQL Relational Schema',
+      title: 'ACID Transactions with Prisma',
       icon: <Database className="w-4 h-4 text-amber-400" />,
-      tag: 'Data Architecture',
+      tag: 'Prisma ORM & PostgreSQL',
       detail:
-        'Normalized relational schema with composite B-tree indexing across `(user_id, status, due_date)` to maintain sub-5ms query response times under high concurrency.',
+        'Multi-table atomic updates guaranteeing consistency across invoice statuses, payments, and balance adjustments.',
     },
   ];
 
@@ -74,7 +74,7 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = () => {
               Follope <span className="text-emerald-400">—</span> Invoicing &amp; Real-time Payment Engine
             </h2>
             <p className="mt-2 text-slate-400 text-sm sm:text-base max-w-2xl">
-              An end-to-end FinTech platform engineered with Django, Redis, Celery, and PostgreSQL to automate itemized invoicing, UPI reconciliation, and escalation workflows.
+              engineered with TypeScript, Node.js (Express), Prisma ORM, and PostgreSQL to automate itemized invoicing, dynamic UPI collection, and client escalation workflows.
             </p>
           </div>
           
@@ -85,13 +85,13 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-mono text-xs font-bold hover:bg-emerald-400 transition-all shadow-md shadow-emerald-500/20"
             >
-              <span>Visit follope.com</span>
+              <span>Visit follope.com (Landing Page)</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
 
-            <span className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 text-emerald-400 border border-slate-800 text-xs font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Production Stack</span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 text-amber-400 border border-slate-800 text-xs font-mono">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              <span>App in Testing</span>
             </span>
           </div>
         </div>
@@ -201,14 +201,14 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = () => {
                       <BellRing className="w-3.5 h-3.5" />
                       <span>Escalation Schedules</span>
                     </div>
-                    <p className="text-slate-400 text-xs">Celery-scheduled automated email reminders disarmed upon payment settlement.</p>
+                    <p className="text-slate-400 text-xs">Automated background sweeps with localized WhatsApp templates and Expo push alerts.</p>
                   </div>
                   <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
                     <div className="flex items-center gap-1.5 text-purple-400 font-semibold mb-1 font-mono">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       <span>Secret Management</span>
                     </div>
-                    <p className="text-slate-400 text-xs">Strict environment secret isolation, API token rotation &amp; HMAC signature checks.</p>
+                    <p className="text-slate-400 text-xs">Strict environment secret isolation, CUID anti-IDOR isolation &amp; Argon2/JWT security.</p>
                   </div>
                 </div>
               )}
@@ -237,7 +237,7 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = () => {
                   <span className="font-bold">SYSTEM WORKFLOW PIPELINE</span>
                 </div>
                 <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">
-                  DJANGO + CELERY
+                  NODE.JS + PRISMA + POSTGRESQL
                 </span>
               </div>
 
@@ -250,7 +250,7 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = () => {
                     </div>
                     <div>
                       <div className="text-white font-semibold">User Invoice Action</div>
-                      <div className="text-[11px] text-slate-400 font-sans">Generates billable invoice &amp; UPI payload</div>
+                      <div className="text-[11px] text-slate-400 font-sans">Integer-paise calculations &amp; CUID token generation</div>
                     </div>
                   </div>
                   <FileText className="w-4 h-4 text-emerald-400" />
@@ -266,8 +266,8 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = () => {
                       2
                     </div>
                     <div>
-                      <div className="text-white font-semibold">Django Backend Core</div>
-                      <div className="text-[11px] text-slate-400 font-sans">Dispatches async workers &amp; audits secrets</div>
+                      <div className="text-white font-semibold">Express &amp; TypeScript API</div>
+                      <div className="text-[11px] text-slate-400 font-sans">Layered service-repository &amp; Zod schema validation</div>
                     </div>
                   </div>
                   <Server className="w-4 h-4 text-cyan-400" />
@@ -283,11 +283,11 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = () => {
                       3
                     </div>
                     <div>
-                      <div className="text-white font-semibold">Redis + Celery Workers</div>
-                      <div className="text-[11px] text-slate-400 font-sans">Payment reminders &amp; overdue queues</div>
+                      <div className="text-white font-semibold">Prisma ACID Operations</div>
+                      <div className="text-[11px] text-slate-400 font-sans">Atomic multi-table status &amp; payment state transitions</div>
                     </div>
                   </div>
-                  <RefreshCw className="w-4 h-4 text-amber-400" />
+                  <Database className="w-4 h-4 text-amber-400" />
                 </div>
 
                 <div className="flex justify-center -my-1 text-slate-600">
@@ -300,11 +300,11 @@ export const FollopeSpotlight: React.FC<FollopeSpotlightProps> = () => {
                       4
                     </div>
                     <div>
-                      <div className="text-white font-semibold">PostgreSQL &amp; Webhooks</div>
-                      <div className="text-[11px] text-slate-400 font-sans">Instant settlement &amp; client notification</div>
+                      <div className="text-white font-semibold">Daemon &amp; Multi-Channel Push</div>
+                      <div className="text-[11px] text-slate-400 font-sans">Expo Push API, Nodemailer OTP &amp; WhatsApp actions</div>
                     </div>
                   </div>
-                  <Database className="w-4 h-4 text-purple-400" />
+                  <RefreshCw className="w-4 h-4 text-purple-400" />
                 </div>
               </div>
 
