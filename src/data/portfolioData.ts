@@ -71,15 +71,16 @@ export const PERSONAL_INFO = {
     github: 'https://github.com/Kshitij-Raj-01/',
     linkedin: 'https://www.linkedin.com/in/kshitij-raj-287106292',
     leetcode: 'https://leetcode.com/u/kshwebsites/',
+    codechef: 'https://www.codechef.com/users/kshitij_raj_01',
     hackerrank: 'https://hackerrank.com/profile/kshwebsites',
     oldPortfolio: 'https://kshitij-raj.vercel.app/'
   },
 
   stats: [
     { label: 'LeetCode Solved', value: '100+' },
+    { label: 'CodeChef Solved', value: '117' },
     { label: 'Featured Projects', value: '5+' },
-    { label: 'Verified Certs', value: '3' },
-    { label: 'Backend Intern', value: 'Robotic Sir' }
+    { label: 'Verified Certs', value: '3' }
   ]
 };
 

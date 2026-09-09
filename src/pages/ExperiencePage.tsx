@@ -2,6 +2,7 @@ import React from 'react';
 import { ExperienceTimeline } from '../components/ExperienceTimeline';
 import { ResearchSection } from '../components/ResearchSection';
 import { LeetCodeCard } from '../components/LeetCodeCard';
+import { CodeChefCard } from '../components/CodeChefCard';
 import { GitHubStatsCard } from '../components/GitHubStatsCard';
 import { Briefcase, Code2 } from 'lucide-react';
 
@@ -32,7 +33,7 @@ export const ExperiencePage: React.FC = () => {
         <ResearchSection />
       </div>
 
-      {/* 3. Problem Solving & Code Contributions: LeetCode & GitHub */}
+      {/* 3. Problem Solving & Code Contributions: LeetCode, CodeChef & GitHub */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-2">
@@ -43,11 +44,12 @@ export const ExperiencePage: React.FC = () => {
             Problem Solving &amp; Development Footprint
           </h2>
           <p className="mt-1 text-slate-400 text-sm">
-            Verified algorithmic proficiency across data structures and continuous Git contribution telemetry.
+            Verified algorithmic proficiency across data structures, competitive programming tracks, and continuous Git contribution telemetry.
           </p>
         </div>
 
         <LeetCodeCard />
+        <CodeChefCard />
         <GitHubStatsCard />
       </div>
     </div>

@@ -191,6 +191,15 @@ export const ContactSection: React.FC = () => {
                   <span>LeetCode</span>
                 </a>
                 <a
+                  href={PERSONAL_INFO.socialLinks.codechef}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-600/40 text-slate-300 hover:text-amber-500 text-xs font-mono transition-colors"
+                >
+                  <Code className="w-4 h-4" />
+                  <span>CodeChef</span>
+                </a>
+                <a
                   href={PERSONAL_INFO.socialLinks.hackerrank}
                   target="_blank"
                   rel="noreferrer"

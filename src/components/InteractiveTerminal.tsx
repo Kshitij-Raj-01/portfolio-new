@@ -702,6 +702,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             <div>GitHub: <a href={PERSONAL_INFO.socialLinks.github} target="_blank" rel="noreferrer" className="text-cyan-400 underline">{PERSONAL_INFO.socialLinks.github}</a></div>
             <div>LinkedIn: <a href={PERSONAL_INFO.socialLinks.linkedin} target="_blank" rel="noreferrer" className="text-cyan-400 underline">{PERSONAL_INFO.socialLinks.linkedin}</a></div>
             <div>LeetCode: <a href={PERSONAL_INFO.socialLinks.leetcode} target="_blank" rel="noreferrer" className="text-amber-400 underline">{PERSONAL_INFO.socialLinks.leetcode}</a></div>
+            <div>CodeChef: <a href={PERSONAL_INFO.socialLinks.codechef} target="_blank" rel="noreferrer" className="text-amber-500 underline">{PERSONAL_INFO.socialLinks.codechef}</a></div>
           </div>
         );
         break;
