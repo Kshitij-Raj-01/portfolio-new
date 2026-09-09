@@ -64,28 +64,39 @@ export const CodeChefCard: React.FC = () => {
   const fetchStats = useCallback(async () => {
     setLoading(true);
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000);
+    const timeoutId = setTimeout(() => controller.abort(), 7000);
 
     try {
-      // Try community API or fallback smoothly to verified profile dataset
-      const res = await fetch(`https://codechef-api.vercel.app/handle/${DEFAULT_CODECHEF_STATS.username}`, {
+      // Primary: Google Apps Script Web App endpoint if configured
+      const endpoint = PERSONAL_INFO.googleSheetScriptUrl
+        ? PERSONAL_INFO.googleSheetScriptUrl
+        : `https://codechef-api.vercel.app/handle/${DEFAULT_CODECHEF_STATS.username}`;
+
+      const res = await fetch(endpoint, {
         signal: controller.signal,
       });
 
       if (res.ok) {
         const data = await res.json();
-        const live: CodeChefStats = {
-          ...DEFAULT_CODECHEF_STATS,
-          totalSolved: typeof data.totalSolved === 'number' ? data.totalSolved : DEFAULT_CODECHEF_STATS.totalSolved,
-          lastUpdated: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        };
-        setStats(live);
-        setIsLive(true);
-        setLastSyncedTime(live.lastUpdated || null);
-        localStorage.setItem(CACHE_KEY, JSON.stringify({ stats: live, timestamp: Date.now() }));
-      } else {
-        throw new Error('Fallback to verified CodeChef telemetry');
+        if (typeof data.totalSolved === 'number') {
+          const live: CodeChefStats = {
+            ...DEFAULT_CODECHEF_STATS,
+            totalSolved: data.totalSolved,
+            badge: data.badge || DEFAULT_CODECHEF_STATS.badge,
+            topLearningPath: data.topLearningPath || DEFAULT_CODECHEF_STATS.topLearningPath,
+            topLearningProgress: data.topLearningProgress || DEFAULT_CODECHEF_STATS.topLearningProgress,
+            topPracticePath: data.topPracticePath || DEFAULT_CODECHEF_STATS.topPracticePath,
+            topPracticeProgress: data.topPracticeProgress || DEFAULT_CODECHEF_STATS.topPracticeProgress,
+            lastUpdated: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          };
+          setStats(live);
+          setIsLive(true);
+          setLastSyncedTime(live.lastUpdated || null);
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ stats: live, timestamp: Date.now() }));
+          return;
+        }
       }
+      throw new Error('Fallback to verified CodeChef telemetry');
     } catch {
       // Retain verified metrics parsed directly from https://www.codechef.com/users/kshitij_raj_01
       setStats(DEFAULT_CODECHEF_STATS);
